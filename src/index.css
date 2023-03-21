@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .logo-text {
+    @apply font-light text-2xl leading-none;
+  }
+
+  .nav-link {
+    @apply text-colorRed hover:text-colorRedHover transition-colors duration-200;
+  }
+
+  .nav-svg path {
+    fill: currentColor;
+  }
+}
