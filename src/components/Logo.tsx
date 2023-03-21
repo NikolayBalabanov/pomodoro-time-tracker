@@ -31,7 +31,7 @@ export default function Logo() {
           </clipPath>
         </defs>
       </svg>
-      <span className="logo-text">pomodoro_box</span>
+      <h1 className="logo-text">pomodoro_box</h1>
     </>
   );
 }
