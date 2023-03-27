@@ -5,7 +5,7 @@ import TaskList from './TaskList';
 
 export default function Menu() {
   return (
-    <aside>
+    <aside className="w-2/5">
       <Description />
       <AddTask />
       <TaskList />
