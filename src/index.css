@@ -76,6 +76,23 @@
     @apply py-[19px] px-[50px] font-medium text-base text-white leading-4 transition-colors duration-200 border-2;
   }
 
+  .btn-pluse {
+    @apply w-[50px] h-[50px] flex items-center justify-center bg-colorGrey rounded-[100%] hover:bg-colorGreen2;
+  }
+
+  .btn-pluse::after,
+  .btn-pluse::before {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 3px;
+    background-color: #ffffff;
+  }
+
+  .btn-pluse::before {
+    transform: rotate(-90deg);
+  }
+
   .dropdown {
     position: absolute;
     z-index: 1;
