@@ -1,34 +1,36 @@
-import React from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import React, { useState } from 'react';
+import { useAppDispatch } from '../hooks/redux';
+import { addTask } from '../redux/Slices/rootSlice';
 import ButtonColored from './UI/ButtonColored';
 
-type FormValues = {
-  inputText: string;
-};
-
 export default function AddTask() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormValues>();
-  const onSubmit: SubmitHandler<FormValues> = (data) => console.log('Форма отправлена', data);
+  const dispatch = useAppDispatch();
+  const [value, setValue] = useState<string>('');
+  const [error, setError] = useState<boolean>(false);
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(event.target.value);
+  };
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (value.trim().length <= 3) {
+      setError(true);
+      return;
+    }
+    setError(false);
+    dispatch(addTask(value));
+    setValue('');
+  };
   return (
-    <form className="mb-[25px] flex flex-col items-start" onSubmit={handleSubmit(onSubmit)}>
+    <form className="mb-[25px] flex flex-col items-start" onSubmit={(e) => handleSubmit(e)}>
       <input
         className="mb-[25px] w-[370px] py-[19px] px-[15px] bg-colorBg border-transparent border-1 text-base placeholder:text-colorTextGrey"
         type="text"
         placeholder="Название задачи"
-        {...register('inputText', {
-          required: 'true',
-          minLength: {
-            value: 4,
-            message: 'Введите больше трех символов',
-          },
-        })}
-        aria-invalid={errors.inputText ? 'true' : undefined}
+        value={value}
+        onChange={(e) => handleChange(e)}
+        aria-invalid={error ? 'true' : 'false'}
       />
-      {errors.inputText && (
+      {error && (
         <span className="text-colorRed text-xs py-2 -mt-5 block">Введите больше трех символов</span>
       )}
       <ButtonColored color="green" text="Добавить" type="submit" />

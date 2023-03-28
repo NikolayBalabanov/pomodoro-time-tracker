@@ -111,4 +111,8 @@
     background-color: #ffffff;
     transform: translateX(-50%) rotate(45deg);
   }
+
+  .decrement path {
+    fill: currentColor;
+  }
 }

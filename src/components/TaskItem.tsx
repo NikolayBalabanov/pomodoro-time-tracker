@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import TaskDropDown from './UI/TaskDropDown';
+import DropDown from './UI/DropDown/DropDown';
 
 interface ITaskItemProps {
   title: string;
@@ -9,7 +9,7 @@ interface ITaskItemProps {
 
 export default function TaskItem({ count, id, title }: ITaskItemProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  console.log(id);
+  const onClose = () => setIsOpen(!isOpen);
   return (
     <li className="task-item flex items-center w-full py-[15px]">
       <span className="mr-[10px] text-base leading-none flex items-center justify-center w-[25px] h-[25px] border border-colorGrey rounded-full">
@@ -19,7 +19,7 @@ export default function TaskItem({ count, id, title }: ITaskItemProps) {
       <button className="task-menu" onClick={() => setIsOpen(!isOpen)}>
         <span className="task-menu__item"></span>
       </button>
-      {isOpen && <TaskDropDown />}
+      {isOpen && <DropDown onClose={onClose} id={id} count={count} />}
     </li>
   );
 }
