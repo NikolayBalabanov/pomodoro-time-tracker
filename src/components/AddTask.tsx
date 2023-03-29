@@ -33,7 +33,7 @@ export default function AddTask() {
       {error && (
         <span className="text-colorRed text-xs py-2 -mt-5 block">Введите больше трех символов</span>
       )}
-      <ButtonColored color="green" text="Добавить" type="submit" />
+      <ButtonColored color="green" text="Добавить" type="submit" callback={() => {}} />
     </form>
   );
 }

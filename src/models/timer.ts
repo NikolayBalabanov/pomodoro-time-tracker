@@ -1,11 +1,17 @@
 export interface ITimerState {
-  round: number;
+  session: number;
   smallBreak: number;
   longBreak: number;
   timer: number;
-  stage: string;
+  stage: EStages;
   initialRounds: number;
   roundsCount: number;
   isTimerStarted: boolean;
   isTimerRunning: boolean;
+}
+
+export enum EStages {
+  session = 'Session',
+  smallBreak = 'SmallBreak',
+  longBreak = 'LongBreak',
 }
