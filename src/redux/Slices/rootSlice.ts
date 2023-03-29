@@ -1,16 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { IRootState } from 'models/root';
+import { ITaskState } from 'models/task';
 
-const initialState: IRootState = {
+const initialState: ITaskState = {
   tasks: [],
-  round: 25,
-  smallBreak: 5,
-  stage: 'Session',
-  longBreak: 25,
-  rounds: 1,
-  timer: 1500,
-  isTimerStarted: false,
-  isTimerRunning: false,
 };
 
 const rootSlice = createSlice({
