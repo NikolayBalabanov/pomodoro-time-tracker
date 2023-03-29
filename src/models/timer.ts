@@ -1,13 +1,11 @@
-import { ITask } from './task';
-
-export interface IRootState {
-  tasks: ITask[];
+export interface ITimerState {
   round: number;
-  stage: string;
   smallBreak: number;
   longBreak: number;
-  rounds: number;
   timer: number;
+  stage: string;
+  initialRounds: number;
+  roundsCount: number;
   isTimerStarted: boolean;
   isTimerRunning: boolean;
 }

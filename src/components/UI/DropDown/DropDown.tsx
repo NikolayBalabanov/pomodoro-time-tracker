@@ -1,66 +1,65 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useAppDispatch } from '../../../hooks/redux';
-import { addRound, editTask, removeTask, subtractRound } from '../../../redux/Slices/rootSlice';
-import Icon, { EIcons } from '../Icon';
+import { addRound, removeTask, subtractRound } from '../../../redux/Slices/tasksSlice';
+import { EIcons } from '../Icon';
+import DropDownItem, { IDropDownItemProps } from './DropDownItem';
 
 interface IDropDownProps {
   id: number;
   count: number;
   onClose: () => void;
+  toggleEditable: () => void;
 }
 
-export default function DropDown({ count, id, onClose }: IDropDownProps) {
+export default function DropDown({ count, id, onClose, toggleEditable }: IDropDownProps) {
   const dispatch = useAppDispatch();
+  const dropDown = useRef<HTMLUListElement>(null);
+  const isMounted = useRef(false);
   const handleIncrement = () => dispatch(addRound(id));
   const handleDecrement = () => dispatch(subtractRound(id));
-  const handleEdit = () => dispatch(editTask(id)); // TODO
+  const handleEdit = () => {
+    toggleEditable();
+    onClose();
+  };
   const handleRemove = () => {
     onClose();
     dispatch(removeTask(id));
   };
+  const DropDownList: IDropDownItemProps[] = [
+    { eventHandler: handleIncrement, count: count, iconName: EIcons.increment, text: 'Увеличить' },
+    { eventHandler: handleDecrement, count: count, iconName: EIcons.decrement, text: 'Уменьшить' },
+    { eventHandler: handleEdit, count: count, iconName: EIcons.edit, text: 'Редактировать' },
+    { eventHandler: handleRemove, count: count, iconName: EIcons.remove, text: 'Удалить' },
+  ];
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropDown.current &&
+        !event.composedPath().includes(dropDown.current) &&
+        isMounted.current
+      ) {
+        onClose();
+      }
+      isMounted.current = true;
+    };
+    document.body.addEventListener('click', handleClickOutside);
+    return () => document.body.removeEventListener('click', handleClickOutside);
+  }, []);
 
   return (
-    <ul className="dropdown absolute w-[165px] h-[153px] py-[5px] list-none top-[44px] -right-[69px] border border-colorGrey bg-white">
-      <li>
-        <button
-          className="w-full py-[9px] px-[14px] flex items-center hover:bg-colorBg"
-          onClick={() => handleIncrement()}
-        >
-          <Icon name={EIcons.increment} styles="mr-2" />
-          <span className="text-base leading-[17px] text-colorTextGrey">Увеличить</span>
-        </button>
-      </li>
-      <li>
-        <button
-          className="w-full py-[9px] px-[14px] flex items-center hover:bg-colorBg"
-          disabled={count <= 1}
-          onClick={() => handleDecrement()}
-        >
-          <Icon
-            name={EIcons.decrement}
-            styles={`mr-2 ${count <= 1 ? 'text-colorGrey' : 'text-colorGreen'}`}
-          />
-          <span className="text-base leading-[17px] text-colorTextGrey">Уменьшить</span>
-        </button>
-      </li>
-      <li>
-        <button
-          className="w-full py-[9px] px-[14px] flex items-center hover:bg-colorBg"
-          onClick={() => handleEdit()}
-        >
-          <Icon name={EIcons.edit} styles="mr-2" />
-          <span className="text-base leading-[17px] text-colorTextGrey">Редактировать</span>
-        </button>
-      </li>
-      <li>
-        <button
-          className="w-full py-[9px] px-[14px] flex items-center hover:bg-colorBg"
-          onClick={() => handleRemove()}
-        >
-          <Icon name={EIcons.remove} styles="mr-2" />
-          <span className="text-base leading-[17px] text-colorTextGrey">Удалить</span>
-        </button>
-      </li>
+    <ul
+      ref={dropDown}
+      className="dropdown absolute w-[165px] h-[153px] py-[5px] list-none top-[44px] -right-[69px] border border-colorGrey bg-white"
+    >
+      {DropDownList.map(({ count, eventHandler, iconName, text }, index) => (
+        <DropDownItem
+          key={index}
+          eventHandler={eventHandler}
+          count={count}
+          iconName={iconName}
+          text={text}
+        />
+      ))}
     </ul>
   );
 }

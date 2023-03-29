@@ -3,3 +3,7 @@ export interface ITask {
   title: string;
   rounds: number;
 }
+
+export interface ITaskState {
+  tasks: ITask[];
+}
