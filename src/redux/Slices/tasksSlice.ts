@@ -1,12 +1,12 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ITaskState } from 'models/task';
 
 const initialState: ITaskState = {
   tasks: [],
 };
 
-const rootSlice = createSlice({
-  name: 'root',
+const tasksSlice = createSlice({
+  name: 'tasks',
   initialState,
   reducers: {
     addRound: (state, action) => {
@@ -26,12 +26,12 @@ const rootSlice = createSlice({
     addTask: (state, action) => {
       state.tasks.push({ title: action.payload, rounds: 1, id: state.tasks.length });
     },
-    editTask: (state, action) => {
+    editTask: (state, action: PayloadAction<{ id: number; title: string }>) => {
       const { id, title } = action.payload;
       state.tasks = state.tasks.map((el) => (el.id === id ? { ...el, title: title } : el));
     },
   },
 });
 
-export const { addTask, removeTask, subtractRound, addRound, editTask } = rootSlice.actions;
-export default rootSlice.reducer;
+export const { addTask, removeTask, subtractRound, addRound, editTask } = tasksSlice.actions;
+export default tasksSlice.reducer;

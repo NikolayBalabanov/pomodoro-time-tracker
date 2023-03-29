@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAppDispatch } from '../hooks/redux';
-import { addTask } from '../redux/Slices/rootSlice';
+import { addTask } from '../redux/Slices/tasksSlice';
 import ButtonColored from './UI/ButtonColored';
 
 export default function AddTask() {
