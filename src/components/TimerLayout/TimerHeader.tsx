@@ -14,7 +14,6 @@ enum EStages {
 
 export default function TimerHeader({ stage, title, count }: ITimerHeader) {
   const bgColor = EStages[stage];
-
   return (
     <div className={`flex items-center justify-between px-10 py-[19px] ${bgColor}`}>
       <h3 className="text-base leading-[17px] text-white font-bold">{title}</h3>

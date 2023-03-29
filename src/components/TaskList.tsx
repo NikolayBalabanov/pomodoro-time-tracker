@@ -3,7 +3,7 @@ import TaskItem from './TaskItem';
 import { useAppSelector } from '../hooks/redux';
 
 export default function TaskList() {
-  const { tasks } = useAppSelector((store) => store.persistedReducer);
+  const { tasks } = useAppSelector((store) => store.persistedReducer.tasksSlice);
   return (
     <div>
       <ul className="mb-5 w-[370px] flex flex-col items-start list-none">
