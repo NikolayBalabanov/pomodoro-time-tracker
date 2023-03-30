@@ -115,4 +115,45 @@
   .decrement path {
     fill: currentColor;
   }
+
+  .underscored {
+    position: relative;
+  }
+
+  .underscored::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: currentColor;
+  }
+
+  .close-btn {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #c4c4c4;
+    width: 17px;
+    height: 17px;
+  }
+
+  .close-btn::after,
+  .close-btn::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: currentColor;
+  }
+
+  .close-btn::before {
+    transform: rotate(45deg);
+  }
+
+  .close-btn::after {
+    transform: rotate(-45deg);
+  }
 }
