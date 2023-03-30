@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useAppDispatch } from '../../../hooks/redux';
-import { addRound, removeTask, subtractRound } from '../../../redux/Slices/tasksSlice';
+import { addRound, subtractRound } from '../../../redux/Slices/tasksSlice';
 import { EIcons } from '../Icon';
 import DropDownItem, { IDropDownItemProps } from './DropDownItem';
 

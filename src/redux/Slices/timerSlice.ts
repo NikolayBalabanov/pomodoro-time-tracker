@@ -4,11 +4,12 @@ import { EStages, ITimerState } from '../../models/timer';
 const initialState: ITimerState = {
   session: 2, // 25
   smallBreak: 1, // 5
-  longBreak: 5, // 15
-  timer: 60 * 2,
+  longBreak: 2, // 15
+  timer: 5 * 2,
   stage: EStages.session,
   initialRounds: 1,
   roundsCount: 0,
+  breaksCount: 0,
   isTimerStarted: false,
   isTimerRunning: false,
 };
@@ -44,17 +45,15 @@ const timerSlice = createSlice({
         }
         if (state.roundsCount % 4 === 0) {
           state.stage = EStages.longBreak;
-          state.timer = state.longBreak * 60;
+          state.timer = state.longBreak * 5;
         } else {
           state.stage = EStages.smallBreak;
-          state.timer = state.smallBreak * 60;
+          state.timer = state.smallBreak * 5;
         }
-      } else if (state.stage === EStages.longBreak) {
+      } else {
+        state.breaksCount += 1;
         state.stage = EStages.session;
-        state.timer = state.session * 60;
-      } else if (state.stage === EStages.smallBreak) {
-        state.stage = EStages.session;
-        state.timer = state.session * 60;
+        state.timer = state.session * 5;
       }
     },
   },

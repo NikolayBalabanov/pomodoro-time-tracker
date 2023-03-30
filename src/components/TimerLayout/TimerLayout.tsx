@@ -11,7 +11,7 @@ import { setInitialRounds, setTimer, switchStage } from '../../redux/Slices/time
 export default function TimerLayout() {
   const dispatch = useAppDispatch();
   const { tasks } = useAppSelector((state) => state.persistedReducer.tasksSlice);
-  const { timer, isTimerRunning, isTimerStarted, stage, roundsCount } = useAppSelector(
+  const { timer, isTimerRunning, isTimerStarted, stage, roundsCount, breaksCount } = useAppSelector(
     (state) => state.persistedReducer.timerSlice
   );
   const currentTask = tasks.length > 0 ? tasks[0] : null;
@@ -46,9 +46,15 @@ export default function TimerLayout() {
     <>
       {currentTask ? (
         <div className="w-3/5">
-          <TimerHeader count={roundsCount + 1} stage={'active'} title={currentTask.title} />
+          <TimerHeader
+            countBreaks={breaksCount + 1}
+            countRounds={roundsCount + 1}
+            stage={stage}
+            isStarted={isTimerStarted}
+            title={currentTask.title}
+          />
           <div className="flex flex-col items-center bg-colorBg pt-[70px] px-10 pb-[107px]">
-            <TimerDisplay time={getDisplayedTime(timer)} stage={stage} />
+            <TimerDisplay time={getDisplayedTime(timer)} isRunning={isTimerRunning} stage={stage} />
             <h3 className="mb-8">
               <span className="text-colorTextGrey">Задача {currentTask.id + 1} -</span>{' '}
               {currentTask.title}

@@ -6,6 +6,7 @@ export interface ITimerState {
   stage: EStages;
   initialRounds: number;
   roundsCount: number;
+  breaksCount: number;
   isTimerStarted: boolean;
   isTimerRunning: boolean;
 }
