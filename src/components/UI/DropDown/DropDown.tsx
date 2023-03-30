@@ -1,50 +1,30 @@
 import React, { useEffect, useRef } from 'react';
-import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
-import { addRound, removeTask, subtractRound } from '../../../redux/Slices/tasksSlice';
+import { useAppDispatch } from '../../../hooks/redux';
+import { addRound, subtractRound } from '../../../redux/Slices/tasksSlice';
 import { EIcons } from '../Icon';
 import DropDownItem, { IDropDownItemProps } from './DropDownItem';
 
 interface IDropDownProps {
   id: number;
   count: number;
+  onDelete: () => void;
   onClose: () => void;
   toggleEditable: () => void;
 }
 
-export default function DropDown({ count, id, onClose, toggleEditable }: IDropDownProps) {
-  const { isTimerRunning } = useAppSelector((state) => state.persistedReducer.timerSlice);
+export default function DropDown({ count, id, onClose, toggleEditable, onDelete }: IDropDownProps) {
   const dispatch = useAppDispatch();
   const dropDown = useRef<HTMLUListElement>(null);
   const isMounted = useRef(false);
-  const handleIncrement = () => {
-    if (isTimerRunning) {
-      alert('Остановите таймер, чтобы изменить количество помидорок!');
-      return;
-    }
-    dispatch(addRound(id));
-  };
-  const handleDecrement = () => {
-    if (isTimerRunning) {
-      alert('Остановите таймер, чтобы изменить количество помидорок!');
-      return;
-    }
-    dispatch(subtractRound(id));
-  };
+  const handleIncrement = () => dispatch(addRound(id));
+  const handleDecrement = () => dispatch(subtractRound(id));
   const handleEdit = () => {
-    if (isTimerRunning) {
-      alert('Остановите таймер, чтобы изменить количество помидорок!');
-      return;
-    }
     toggleEditable();
     onClose();
   };
   const handleRemove = () => {
-    if (isTimerRunning) {
-      alert('Остановите таймер, чтобы изменить количество помидорок!');
-      return;
-    }
     onClose();
-    dispatch(removeTask(id));
+    onDelete();
   };
   const DropDownList: IDropDownItemProps[] = [
     { eventHandler: handleIncrement, count: count, iconName: EIcons.increment, text: 'Увеличить' },
