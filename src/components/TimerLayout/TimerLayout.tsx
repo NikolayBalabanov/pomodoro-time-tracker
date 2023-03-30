@@ -5,36 +5,36 @@ import TimerDisplay from './TimerDisplay';
 import TimerHeader from './TimerHeader';
 import { getDisplayedTime } from '../../utils/getDisplayedTime';
 import ButtonToggler from '../../components/UI/ButtonToggler';
-import { EStages } from '../../models/timer';
-import { setInitialRounds, setTimer, switchStage } from '../../redux/Slices/timerSlice';
+import { reset, setInitialRounds, setTimer, switchStage } from '../../redux/Slices/timerSlice';
+import { removeTask } from '../../redux/Slices/tasksSlice';
 
 export default function TimerLayout() {
   const dispatch = useAppDispatch();
   const { tasks } = useAppSelector((state) => state.persistedReducer.tasksSlice);
-  const { timer, isTimerRunning, isTimerStarted, stage, roundsCount, breaksCount } = useAppSelector(
-    (state) => state.persistedReducer.timerSlice
-  );
+  const {
+    timer,
+    isTimerRunning,
+    isTimerStarted,
+    stage,
+    roundsCount,
+    breaksCount,
+    isFinish,
+    initialRounds,
+  } = useAppSelector((state) => state.persistedReducer.timerSlice);
   const currentTask = tasks.length > 0 ? tasks[0] : null;
   useEffect(() => {
-    if (currentTask) {
-      dispatch(setInitialRounds(currentTask?.rounds));
-    }
-  }, [currentTask]);
-  useEffect(() => {
     const timerId = setTimeout(() => {
-      if (!isTimerRunning) return;
-      if (timer === 0 && stage === EStages.session) {
-        console.log('Сессия завершена');
-        dispatch(switchStage());
-      } else if (timer === 0 && stage === EStages.smallBreak) {
-        console.log('Завершена мини пауза');
-        dispatch(switchStage());
-      } else if (timer === 0 && stage === EStages.longBreak) {
-        console.log('Завершена большая пауза');
-        dispatch(switchStage());
+      if (isFinish) {
+        dispatch(reset());
+        dispatch(removeTask(currentTask?.id));
+        return;
       }
-      console.log('---ТИК---');
-      dispatch(setTimer());
+      if (currentTask && initialRounds < currentTask.rounds) {
+        dispatch(setInitialRounds(currentTask?.rounds));
+      }
+      if (!isTimerRunning) return;
+      if (timer === 0) dispatch(switchStage());
+      if (timer > 0) dispatch(setTimer());
     }, 1000);
 
     return () => {
@@ -47,8 +47,8 @@ export default function TimerLayout() {
       {currentTask ? (
         <div className="w-3/5">
           <TimerHeader
-            countBreaks={breaksCount + 1}
-            countRounds={roundsCount + 1}
+            countBreaks={breaksCount}
+            countRounds={roundsCount}
             stage={stage}
             isStarted={isTimerStarted}
             title={currentTask.title}

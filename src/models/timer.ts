@@ -9,6 +9,7 @@ export interface ITimerState {
   breaksCount: number;
   isTimerStarted: boolean;
   isTimerRunning: boolean;
+  isFinish: boolean;
 }
 
 export enum EStages {

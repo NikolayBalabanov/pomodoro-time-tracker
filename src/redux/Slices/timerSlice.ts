@@ -2,16 +2,17 @@ import { createSlice } from '@reduxjs/toolkit';
 import { EStages, ITimerState } from '../../models/timer';
 
 const initialState: ITimerState = {
-  session: 2, // 25
+  session: 1, // 25
   smallBreak: 1, // 5
-  longBreak: 2, // 15
-  timer: 5 * 2,
+  longBreak: 1, // 15
+  timer: 5 * 1,
   stage: EStages.session,
   initialRounds: 1,
-  roundsCount: 0,
-  breaksCount: 0,
+  roundsCount: 1,
+  breaksCount: 1,
   isTimerStarted: false,
   isTimerRunning: false,
+  isFinish: false,
 };
 
 const timerSlice = createSlice({
@@ -20,7 +21,6 @@ const timerSlice = createSlice({
   reducers: {
     setInitialRounds: (state, action) => {
       if (state.isTimerRunning) return;
-      console.log('Увеличиваю раунды', action.payload);
       const value = action.payload;
       state.initialRounds = value;
     },
@@ -38,22 +38,30 @@ const timerSlice = createSlice({
     },
     switchStage: (state) => {
       if (state.stage === EStages.session) {
-        console.log('Помодокрас amount', state.initialRounds);
-        state.roundsCount += 1;
-        if (state.initialRounds <= state.roundsCount) {
-          console.log('Логика по удалению таска и обновлению таймера');
-        }
-        if (state.roundsCount % 4 === 0) {
-          state.stage = EStages.longBreak;
-          state.timer = state.longBreak * 5;
+        if (state.roundsCount <= state.initialRounds) {
+          state.roundsCount += 1;
+          if (state.roundsCount % 4 === 0) {
+            state.stage = EStages.longBreak;
+            state.timer = state.longBreak * 5;
+          } else {
+            state.stage = EStages.smallBreak;
+            state.timer = state.smallBreak * 3;
+          }
         } else {
-          state.stage = EStages.smallBreak;
-          state.timer = state.smallBreak * 5;
+          state.isTimerRunning = false;
+          state.isFinish = true;
+          console.log('финиш1');
         }
       } else {
-        state.breaksCount += 1;
-        state.stage = EStages.session;
-        state.timer = state.session * 5;
+        if (state.roundsCount <= state.initialRounds) {
+          state.breaksCount += 1;
+          state.stage = EStages.session;
+          state.timer = state.session * 5;
+        } else {
+          state.isTimerRunning = false;
+          state.isFinish = true;
+          console.log('финиш2');
+        }
       }
     },
   },
