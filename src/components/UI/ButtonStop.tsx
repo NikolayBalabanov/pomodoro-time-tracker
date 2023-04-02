@@ -1,8 +1,8 @@
 import React from 'react';
-import { reset, switchStage } from '../../redux/Slices/timerSlice';
+import { reset, stopTimer, switchStage } from '../../redux/Slices/timerSlice';
 import { shiftTask } from '../../redux/Slices/tasksSlice';
 import { incrementPomodoros } from '../../redux/Slices/statisticsSlice';
-import { useAppDispatch } from '../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { EStages } from '../../models/timer';
 
 enum EStopText {
@@ -20,19 +20,17 @@ interface IButtonStopProps {
 
 export default function ButtonStop({ stage, text, isRunning, isStarted }: IButtonStopProps) {
   const dispatch = useAppDispatch();
+  const { tasks } = useAppSelector((state) => state.persistedReducer.tasksSlice);
   const handleSkip = () => {
-    console.log('handleSkip');
-    dispatch(switchStage());
+    dispatch(switchStage(tasks.length > 0 ? tasks[0].rounds : 1));
   };
   const handleDone = () => {
-    console.log('handleDone');
     dispatch(incrementPomodoros());
     dispatch(reset());
     dispatch(shiftTask());
   };
   const handleStop = () => {
-    console.log('handleStop');
-    dispatch(reset());
+    dispatch(stopTimer());
   };
   const curCallback = () => {
     if (isStarted && !isRunning && stage === EStages.session) return handleDone;
