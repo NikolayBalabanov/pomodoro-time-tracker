@@ -8,12 +8,11 @@ import Confirm from './UI/Modals/Confirm';
 interface ITaskItemProps {
   title: string;
   count: number;
-  id: number;
+  id: string;
 }
 
 export default function TaskItem({ count, id, title }: ITaskItemProps) {
   const { isTimerRunning } = useAppSelector((state) => state.persistedReducer.timerSlice);
-
   const dispatch = useAppDispatch();
   const [isModal, setIsModal] = useState<boolean>(false);
   const [isDropDown, setIsDropDown] = useState<boolean>(false);

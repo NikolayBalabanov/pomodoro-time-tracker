@@ -5,7 +5,7 @@ import { EIcons } from '../Icon';
 import DropDownItem, { IDropDownItemProps } from './DropDownItem';
 
 interface IDropDownProps {
-  id: number;
+  id: string;
   count: number;
   onDelete: () => void;
   onClose: () => void;
