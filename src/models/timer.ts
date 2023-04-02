@@ -4,7 +4,6 @@ export interface ITimerState {
   longBreak: number;
   timer: number;
   stage: EStages;
-  initialRounds: number;
   roundsCount: number;
   breaksCount: number;
   isTimerStarted: boolean;

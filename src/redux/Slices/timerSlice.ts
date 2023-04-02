@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { EStages, ITimerState } from '../../models/timer';
 
 const initialState: ITimerState = {
@@ -7,7 +7,6 @@ const initialState: ITimerState = {
   longBreak: 1, // 15
   timer: 5 * 1,
   stage: EStages.session,
-  initialRounds: 1,
   roundsCount: 1,
   breaksCount: 1,
   isTimerStarted: false,
@@ -19,11 +18,6 @@ const timerSlice = createSlice({
   name: 'timer',
   initialState,
   reducers: {
-    setInitialRounds: (state, action) => {
-      if (state.isTimerRunning) return;
-      const value = action.payload;
-      state.initialRounds = value;
-    },
     reset: () => {
       return { ...initialState };
     },
@@ -36,9 +30,13 @@ const timerSlice = createSlice({
     startTimer: (state) => {
       state.isTimerStarted = !state.isTimerStarted;
     },
-    switchStage: (state) => {
+    stopTimer: (state) => {
+      return { ...initialState, breaksCount: state.breaksCount, roundsCount: state.roundsCount };
+    },
+    switchStage: (state, action: PayloadAction<number>) => {
+      const taskRounds = action.payload;
       if (state.stage === EStages.session) {
-        if (state.roundsCount <= state.initialRounds) {
+        if (state.roundsCount <= taskRounds) {
           state.roundsCount += 1;
           if (state.roundsCount % 4 === 0) {
             state.stage = EStages.longBreak;
@@ -52,7 +50,7 @@ const timerSlice = createSlice({
           state.isFinish = true;
         }
       } else {
-        if (state.roundsCount <= state.initialRounds) {
+        if (state.roundsCount <= taskRounds) {
           state.breaksCount += 1;
           state.stage = EStages.session;
           state.timer = state.session * 5;
@@ -65,6 +63,6 @@ const timerSlice = createSlice({
   },
 });
 
-export const { setInitialRounds, reset, toggleTimer, setTimer, startTimer, switchStage } =
+export const { reset, toggleTimer, setTimer, startTimer, switchStage, stopTimer } =
   timerSlice.actions;
 export default timerSlice.reducer;
