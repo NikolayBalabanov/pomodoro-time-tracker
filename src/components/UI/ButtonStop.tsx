@@ -1,6 +1,8 @@
 import React from 'react';
-import { useAppDispatch } from '../../hooks/redux';
 import { reset, switchStage } from '../../redux/Slices/timerSlice';
+import { shiftTask } from '../../redux/Slices/tasksSlice';
+import { incrementPomodoros } from '../../redux/Slices/statisticsSlice';
+import { useAppDispatch } from '../../hooks/redux';
 import { EStages } from '../../models/timer';
 
 enum EStopText {
@@ -24,7 +26,9 @@ export default function ButtonStop({ stage, text, isRunning, isStarted }: IButto
   };
   const handleDone = () => {
     console.log('handleDone');
-    dispatch(switchStage());
+    dispatch(incrementPomodoros());
+    dispatch(reset());
+    dispatch(shiftTask());
   };
   const handleStop = () => {
     console.log('handleStop');

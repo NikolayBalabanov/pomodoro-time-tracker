@@ -157,3 +157,19 @@
     transform: rotate(-45deg);
   }
 }
+
+.task-enter {
+  transform: translateX(-200px);
+}
+.task-enter-active {
+  transform: translateX(0px);
+  transition: transform 300ms ease-in;
+}
+.task-exit {
+  opacity: 1;
+}
+.task-exit-active {
+  opacity: 0;
+  transform: translateX(200px);
+  transition: transform 300ms ease-in, opacity 300ms ease-in;
+}

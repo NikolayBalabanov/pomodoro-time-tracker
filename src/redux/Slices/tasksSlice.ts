@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ITaskState } from 'models/task';
+import { v1 as uuidv1 } from 'uuid';
 
 const initialState: ITaskState = {
   tasks: [],
@@ -17,21 +18,23 @@ const tasksSlice = createSlice({
       const id = action.payload;
       state.tasks = state.tasks.map((el) => (el.id === id ? { ...el, rounds: el.rounds - 1 } : el));
     },
-    removeTask: (state, action) => {
+    removeTask: (state, action: PayloadAction<string>) => {
       const id = action.payload;
-      state.tasks = state.tasks
-        .filter((el) => el.id !== id)
-        .map((newElem, index) => ({ ...newElem, id: index }));
+      state.tasks = state.tasks.filter((el) => el.id !== id);
+    },
+    shiftTask: (state) => {
+      state.tasks.shift();
     },
     addTask: (state, action) => {
-      state.tasks.push({ title: action.payload, rounds: 1, id: state.tasks.length });
+      state.tasks.push({ title: action.payload, rounds: 1, id: uuidv1() });
     },
-    editTask: (state, action: PayloadAction<{ id: number; title: string }>) => {
+    editTask: (state, action: PayloadAction<{ id: string; title: string }>) => {
       const { id, title } = action.payload;
       state.tasks = state.tasks.map((el) => (el.id === id ? { ...el, title: title } : el));
     },
   },
 });
 
-export const { addTask, removeTask, subtractRound, addRound, editTask } = tasksSlice.actions;
+export const { addTask, removeTask, shiftTask, subtractRound, addRound, editTask } =
+  tasksSlice.actions;
 export default tasksSlice.reducer;

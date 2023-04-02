@@ -1,12 +1,12 @@
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import React, { useEffect } from 'react';
-import ButtonStop from '../../components/UI/ButtonStop';
 import TimerDisplay from './TimerDisplay';
 import TimerHeader from './TimerHeader';
-import { getDisplayedTime } from '../../utils/getDisplayedTime';
+import ButtonStop from '../../components/UI/ButtonStop';
 import ButtonToggler from '../../components/UI/ButtonToggler';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { getDisplayedTime } from '../../utils/getDisplayedTime';
 import { reset, setInitialRounds, setTimer, switchStage } from '../../redux/Slices/timerSlice';
-import { removeTask } from '../../redux/Slices/tasksSlice';
+import { shiftTask } from '../../redux/Slices/tasksSlice';
 
 export default function TimerLayout() {
   const dispatch = useAppDispatch();
@@ -26,11 +26,11 @@ export default function TimerLayout() {
     const timerId = setTimeout(() => {
       if (isFinish) {
         dispatch(reset());
-        dispatch(removeTask(currentTask?.id));
+        dispatch(shiftTask());
         return;
       }
       if (currentTask && initialRounds < currentTask.rounds) {
-        dispatch(setInitialRounds(currentTask?.rounds));
+        dispatch(setInitialRounds(currentTask.rounds));
       }
       if (!isTimerRunning) return;
       if (timer === 0) dispatch(switchStage());
@@ -56,7 +56,7 @@ export default function TimerLayout() {
           <div className="flex flex-col items-center bg-colorBg pt-[70px] px-10 pb-[107px]">
             <TimerDisplay time={getDisplayedTime(timer)} isRunning={isTimerRunning} stage={stage} />
             <h3 className="mb-8">
-              <span className="text-colorTextGrey">Задача {currentTask.id + 1} -</span>{' '}
+              <span className="text-colorTextGrey">Задача {tasks.indexOf(currentTask) + 1} -</span>{' '}
               {currentTask.title}
             </h3>
             <div className="flex gap-[25px]">

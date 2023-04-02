@@ -50,7 +50,6 @@ const timerSlice = createSlice({
         } else {
           state.isTimerRunning = false;
           state.isFinish = true;
-          console.log('финиш1');
         }
       } else {
         if (state.roundsCount <= state.initialRounds) {
@@ -60,7 +59,6 @@ const timerSlice = createSlice({
         } else {
           state.isTimerRunning = false;
           state.isFinish = true;
-          console.log('финиш2');
         }
       }
     },

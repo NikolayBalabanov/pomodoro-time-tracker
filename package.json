@@ -18,7 +18,9 @@
     "react-hook-form": "^7.43.7",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.9.0",
-    "redux-persist": "^6.0.0"
+    "react-transition-group": "^4.4.5",
+    "redux-persist": "^6.0.0",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.3",
@@ -27,6 +29,8 @@
     "@testing-library/user-event": "^14.4.3",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
+    "@types/react-transition-group": "^4.4.5",
+    "@types/uuid": "^9.0.1",
     "@typescript-eslint/eslint-plugin": "^5.55.0",
     "@typescript-eslint/parser": "^5.55.0",
     "@vitejs/plugin-react": "^3.1.0",
