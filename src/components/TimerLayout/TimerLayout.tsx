@@ -50,8 +50,7 @@ export default function TimerLayout() {
           <div className="flex flex-col items-center bg-colorBg pt-[70px] px-10 pb-[107px]">
             <TimerDisplay time={getDisplayedTime(timer)} isRunning={isTimerRunning} stage={stage} />
             <h3 className="mb-8">
-              <span className="text-colorTextGrey">Задача {tasks.indexOf(currentTask) + 1} -</span>{' '}
-              {currentTask.title}
+              <span className="text-colorTextGrey">Задача -</span> {currentTask.title}
             </h3>
             <TimerControls />
           </div>

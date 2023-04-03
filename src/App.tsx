@@ -1,7 +1,8 @@
-import Header from './components/Header';
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
+import Header from './components/Header';
 import Main from './pages/Main';
+import Stat from './pages/Stat';
 
 function App() {
   return (
@@ -9,7 +10,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/statistics" element={<h1>статистику еще не завезли</h1>} />
+        <Route path="/statistics" element={<Stat />} />
       </Routes>
     </div>
   );
