@@ -1,11 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import 'chart.js/auto';
 import DayBoard from './DayBoard';
-import PomodoroCount from './PomodoroCount';
 import FocusBoard from './FocusBoard';
+import PausesBoard from './PausesBoard';
+import PomodoroCount from './PomodoroCount';
 import BreakTimeBoard from './BreakTimeBoard';
-import PausesBuard from './PausesBuard';
+import { TWeekDays } from '../../models/weekDays';
+import todayWeekDay from '../../utils/todayWeekDay';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { setStatisticsByDay, setStatisticsByWeek } from '../../redux/Slices/statisticsSlice';
+import WeekBoard from './WeekBoard';
 
 export default function StatisticsLayout() {
+  const dispatch = useAppDispatch();
+  const {
+    statisticsByDay: { breakTimer, pauses, pomodoros, sessionTimer },
+    statisticsByWeek,
+  } = useAppSelector((state) => state.persistedReducer.statisticsSlice);
+  const [currentWeek, setCurrentWeek] = useState<number>(0);
+  const [currentDay, setCurrentDay] = useState<TWeekDays>(1);
+  useEffect(() => {
+    // dispatch(setStatisticsByWeek(currentWeek));
+    dispatch(setStatisticsByDay({ week: currentWeek, day: currentDay }));
+  }, [currentDay, currentWeek, dispatch]);
   return (
     <>
       <div className="mb-[40px] flex justify-between">
@@ -14,15 +31,21 @@ export default function StatisticsLayout() {
       </div>
       <div className="grid grid-cols-12 gap-8">
         <div className="col-span-3 flex flex-col gap-8">
-          <DayBoard day={0} time={0} />
-          <PomodoroCount pomodoros={3} />
+          <DayBoard day={currentDay} time={sessionTimer} />
+          <PomodoroCount pomodoros={pomodoros} />
         </div>
-        <div className="col-span-9">Тут будет статистика за неделю</div>
+        <div className="col-span-9">
+          <WeekBoard
+            current={currentDay}
+            weekData={statisticsByWeek}
+            onDayChange={(day: TWeekDays) => setCurrentDay(day)}
+          />
+        </div>
       </div>
       <div className="grid grid-cols-3 gap-8">
-        <FocusBoard />
-        <BreakTimeBoard />
-        <PausesBuard pauses={0} />
+        <FocusBoard breakTime={breakTimer} sessionTime={sessionTimer} />
+        <BreakTimeBoard breakTime={breakTimer} />
+        <PausesBoard pauses={pauses} />
       </div>
     </>
   );

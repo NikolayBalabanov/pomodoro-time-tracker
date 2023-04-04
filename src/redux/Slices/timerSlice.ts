@@ -37,7 +37,6 @@ const timerSlice = createSlice({
       const taskRounds = action.payload;
       if (state.stage === EStages.session) {
         if (state.roundsCount <= taskRounds) {
-          state.roundsCount += 1;
           if (state.roundsCount % 4 === 0) {
             state.stage = EStages.longBreak;
             state.timer = state.longBreak * 5;
@@ -45,6 +44,7 @@ const timerSlice = createSlice({
             state.stage = EStages.smallBreak;
             state.timer = state.smallBreak * 3;
           }
+          state.roundsCount += 1;
         } else {
           state.isTimerRunning = false;
           state.isFinish = true;

@@ -1,10 +1,22 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { IByDay, IStatisticsState } from '../../models/statistics';
+import getStatisticsByDay from '../../utils/getStatisticsByDay';
+import getDate from '../../utils/getDate';
+import todayWeekDay from '../../utils/todayWeekDay';
+import getStatisticsByWeek from '../../utils/getStatisticsByWeek';
 
-const initialState = {
-  pauseCnt: 0,
-  breakTimer: 0,
-  sessionTimer: 0,
-  pomodoros: 0,
+const initialState: IStatisticsState = {
+  statistics: {
+    '2023-04-03': { breakTimer: 100, pauses: 2, pomodoros: 20, sessionTimer: 333 },
+    '2023-03-21': { breakTimer: 200, pauses: 5, pomodoros: 25, sessionTimer: 444 },
+  },
+  statisticsByWeek: [0, 0, 0, 0, 0, 0, 0],
+  statisticsByDay: {
+    sessionTimer: 0,
+    breakTimer: 0,
+    pauses: 0,
+    pomodoros: 0,
+  },
 };
 
 const statisticsSlice = createSlice({
@@ -12,20 +24,54 @@ const statisticsSlice = createSlice({
   initialState,
   reducers: {
     incrementPomodoros: (state) => {
-      state.pomodoros++;
+      const key = getDate(0, todayWeekDay());
+      if (key in state.statistics) {
+        state.statistics[key].pomodoros++;
+      } else {
+        state.statistics[key].pomodoros = 1;
+      }
     },
-    incrementPauseCnt: (state, action) => {
-      state.pauseCnt++;
+    incrementPauses: (state) => {
+      const key = getDate(0, todayWeekDay());
+      if (key in state.statistics) {
+        state.statistics[key].pauses++;
+      } else {
+        state.statistics[key].pauses = 1;
+      }
     },
-    incrementBreakTimer: (state, action) => {
-      state.breakTimer++;
+    incrementBreakTimer: (state) => {
+      const key = getDate(0, todayWeekDay());
+      if (key in state.statistics) {
+        state.statistics[key].breakTimer++;
+      } else {
+        state.statistics[key].breakTimer = 1;
+      }
     },
-    incrementSessionTimer: (state, action) => {
-      state.sessionTimer++;
+    incrementSessionTimer: (state) => {
+      const key = getDate(0, todayWeekDay());
+      if (key in state.statistics) {
+        state.statistics[key].sessionTimer++;
+      } else {
+        state.statistics[key] = { breakTimer: 0, pauses: 0, pomodoros: 0, sessionTimer: 1 };
+      }
+    },
+    setStatisticsByDay: (state, action: PayloadAction<IByDay>) => {
+      const { week, day } = action.payload;
+      state.statisticsByDay = getStatisticsByDay(week, day, state.statistics);
+    },
+    setStatisticsByWeek: (state, action: PayloadAction<number>) => {
+      const week = action.payload;
+      state.statisticsByWeek = getStatisticsByWeek(week, state.statistics);
     },
   },
 });
 
-export const { incrementPomodoros, incrementPauseCnt, incrementBreakTimer, incrementSessionTimer } =
-  statisticsSlice.actions;
+export const {
+  incrementPomodoros,
+  incrementPauses,
+  incrementBreakTimer,
+  incrementSessionTimer,
+  setStatisticsByDay,
+  setStatisticsByWeek,
+} = statisticsSlice.actions;
 export default statisticsSlice.reducer;
