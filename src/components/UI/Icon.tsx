@@ -10,6 +10,7 @@ import PomodoroIcon from './Icons/PomodoroIcon';
 import FocusIcon from './Icons/FocusIcon';
 import BreaksIcon from './Icons/BreaksIcon';
 import PausesIcon from './Icons/PausesIcon';
+import ArrowIcon from './Icons/ArrowIcon';
 
 export enum EIcons {
   decrement = 'DecrementIcon',
@@ -23,6 +24,7 @@ export enum EIcons {
   focus = 'Focus',
   breaks = 'Breaks',
   pauses = 'Pauses',
+  arrow = 'Arrow',
 }
 
 interface IIconProps {
@@ -55,6 +57,8 @@ export default function Icon(props: IIconProps) {
       return <BreaksIcon styles={styles} />;
     case 'Pauses':
       return <PausesIcon styles={styles} />;
+    case 'Arrow':
+      return <ArrowIcon styles={styles} />;
     default:
       return <RemoveIcon styles={styles} />;
   }

@@ -8,14 +8,13 @@ interface IBreakTimeBoard {
 }
 
 export default function BreakTimeBoard({ breakTime }: IBreakTimeBoard) {
-  const styles = 'flex p-[25px] justify-between w-full items-center';
-  const contetn = getHumanReadbleTime(breakTime, true);
-  // TODO: Вычислить контент
-  // TODO: цвет бг и свг
+  const styles =
+    'flex p-[25px] justify-between w-full items-center bg-colorSemiPurple text-colorPurple';
+  const content = breakTime ? getHumanReadbleTime(breakTime, true) : '0c';
   return (
     <StatBoard
-      Icon={<Icon name={EIcons.breaks} />}
-      content={contetn}
+      Icon={<Icon name={EIcons.breaks} styles="board-svg" />}
+      content={content}
       title="Время на паузе"
       styles={styles}
     />
