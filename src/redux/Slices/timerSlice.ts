@@ -2,10 +2,10 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { EStages, ITimerState } from '../../models/timer';
 
 const initialState: ITimerState = {
-  session: 1, // 25
-  smallBreak: 1, // 5
-  longBreak: 1, // 15
-  timer: 5 * 1,
+  session: 25, // 25
+  smallBreak: 5, // 5
+  longBreak: 15, // 15
+  timer: 60 * 25,
   stage: EStages.session,
   roundsCount: 1,
   breaksCount: 1,

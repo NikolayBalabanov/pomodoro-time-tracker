@@ -5,7 +5,7 @@ export default function Logo() {
   return (
     <>
       <Icon name={EIcons.logo} styles="mr-3" />
-      <h1 className="logo-text">pomodoro_box</h1>
+      <h1 className="logo-text sm:block hidden">pomodoro_box</h1>
     </>
   );
 }

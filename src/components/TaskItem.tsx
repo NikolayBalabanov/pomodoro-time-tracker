@@ -38,7 +38,7 @@ export default function TaskItem({ count, id, title }: ITaskItemProps) {
 
   return (
     <li className="task-item flex items-center w-full py-[15px]">
-      <span className="mr-[10px] text-base leading-none flex items-center justify-center w-[25px] h-[25px] border border-colorGrey rounded-full">
+      <span className="mr-[10px] text-base leading-none flex items-center justify-center min-w-[25px] h-[25px] border border-colorGrey rounded-full dark-mode dark:bg-colorGrey">
         {count}
       </span>
       <EditableTitle

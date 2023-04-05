@@ -23,7 +23,7 @@ export default function AddTask() {
   return (
     <form className="mb-[25px] flex flex-col items-start" onSubmit={(e) => handleSubmit(e)}>
       <input
-        className="mb-[25px] w-[370px] py-[19px] px-[15px] bg-colorBg border-transparent border-1 text-base placeholder:text-colorTextGrey"
+        className="mb-[25px] md:mr-0 mr-3 sm:w-[370px] w-full md:py-[19px] md:px-[15px] bg-colorBg border-transparent border-1 text-base placeholder:text-colorTextGrey dark-mode dark:bg-colorTextGrey dark:placeholder:text-colorBg dark:text-white"
         type="text"
         placeholder="Название задачи"
         value={value}

@@ -8,7 +8,7 @@ export default function TimerControls() {
     (state) => state.persistedReducer.timerSlice
   );
   return (
-    <div className="flex gap-[25px]">
+    <div className="flex md:gap-[25px] gap-5">
       <ButtonToggler isStarted={isTimerStarted} isRunning={isTimerRunning} />
       <ButtonStop
         text={'Стоп'}

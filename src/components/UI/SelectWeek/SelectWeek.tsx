@@ -15,8 +15,6 @@ interface ISelectWeekProps {
 }
 
 export default function SelectWeek({ current, onChangeWeek }: ISelectWeekProps) {
-  console.log('current', current);
-  console.log('selectFields', selectFields);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const fieldsArr = selectFields.filter((el) => el.text !== selectFields[Math.abs(current)].text);
   const select = useRef<HTMLDivElement>(null);

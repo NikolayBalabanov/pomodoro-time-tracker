@@ -7,7 +7,7 @@ export default function TaskList() {
   const { tasks } = useAppSelector((store) => store.persistedReducer.tasksSlice);
   return (
     <div>
-      <ul className="mb-5 w-[370px] flex flex-col items-start list-none">
+      <ul className="mb-5 xl:w-[370px] w-full flex flex-col items-start list-none">
         <TransitionGroup component={null}>
           {tasks.map((task) => (
             <CSSTransition key={task.id} timeout={500} classNames="task">
@@ -16,7 +16,7 @@ export default function TaskList() {
           ))}
         </TransitionGroup>
       </ul>
-      <span>1 час 15 мин</span>
+      <span className="dark-mode dark:text-colorGrey">1 час 15 мин</span>
     </div>
   );
 }

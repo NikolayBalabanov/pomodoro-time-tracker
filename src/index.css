@@ -42,7 +42,7 @@
     align-items: center;
     justify-content: space-between;
     color: #c4c4c4;
-    width: 26px;
+    min-width: 26px;
     height: 6px;
     transition: color 0.2s ease-in-out;
   }
@@ -73,11 +73,11 @@
   }
 
   .btn {
-    @apply py-[19px] px-[50px] font-medium text-base disabled:text-colorGrey disabled:border-colorGrey text-white leading-4 transition-colors duration-200 border-2;
+    @apply md:py-[19px] md:px-[50px] py-[10px] px-[25px] font-medium text-base disabled:text-colorGrey disabled:border-colorGrey text-white leading-4 transition-colors duration-200 border-2;
   }
 
   .btn-pluse {
-    @apply w-[50px] h-[50px] flex items-center justify-center bg-colorGrey rounded-[100%] hover:bg-colorGreen2;
+    @apply md:w-[50px] md:h-[50px] w-[30px] h-[30px] flex items-center justify-center bg-colorGrey rounded-[100%] hover:bg-colorGreen2 dark-mode dark:bg-colorTextGrey dark:hover:bg-colorGreen2;
   }
 
   .btn-pluse::after,
@@ -164,6 +164,10 @@
 
 .select-item:not(:last-child) {
   @apply border-b border-b-colorGrey;
+}
+
+.dark-mode {
+  @apply transition-colors duration-500;
 }
 
 .focus-svg path {

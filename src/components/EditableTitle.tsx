@@ -41,7 +41,7 @@ export default function EditableTitle({
           defaultValue={title}
         />
       ) : (
-        <h2 className="mr-auto px-[5px] py-[4px] text-base leading-none">
+        <h2 className="mr-auto px-[5px] py-[4px] text-base leading-none overflow-x-clip dark-mode dark:text-colorBg">
           {title.length > 0 ? title : 'Default title'}
         </h2>
       )}
