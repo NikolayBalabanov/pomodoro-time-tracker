@@ -8,10 +8,15 @@ import { shiftTask } from '../../redux/Slices/tasksSlice';
 import TimerControls from './TimerControls';
 import TimerInitial from './TimerInitial';
 import { EStages } from '../../models/timer';
-import { incrementPomodoros } from '../../redux/Slices/statisticsSlice';
+import {
+  incrementBreakTimer,
+  incrementPomodoros,
+  incrementSessionTimer,
+} from '../../redux/Slices/statisticsSlice';
 
 export default function TimerLayout() {
   const dispatch = useAppDispatch();
+  const { statistics } = useAppSelector((state) => state.persistedReducer.statisticsSlice);
   const { tasks } = useAppSelector((state) => state.persistedReducer.tasksSlice);
   const { timer, isTimerRunning, isTimerStarted, stage, roundsCount, breaksCount, isFinish } =
     useAppSelector((state) => state.persistedReducer.timerSlice);
@@ -23,12 +28,15 @@ export default function TimerLayout() {
         dispatch(shiftTask());
         return;
       }
-      if (!isTimerRunning) return;
-      if (timer === 0) {
+      if (!isTimerRunning && isTimerStarted) dispatch(incrementBreakTimer());
+      if (timer === 0 && isTimerRunning) {
         if (stage === EStages.session) dispatch(incrementPomodoros());
         dispatch(switchStage(currentTask?.rounds ?? 1));
       }
-      if (timer > 0) dispatch(setTimer());
+      if (timer > 0 && isTimerRunning) {
+        if (stage === EStages.session) dispatch(incrementSessionTimer());
+        dispatch(setTimer());
+      }
     }, 1000);
 
     return () => {
@@ -50,8 +58,7 @@ export default function TimerLayout() {
           <div className="flex flex-col items-center bg-colorBg pt-[70px] px-10 pb-[107px]">
             <TimerDisplay time={getDisplayedTime(timer)} isRunning={isTimerRunning} stage={stage} />
             <h3 className="mb-8">
-              <span className="text-colorTextGrey">Задача {tasks.indexOf(currentTask) + 1} -</span>{' '}
-              {currentTask.title}
+              <span className="text-colorTextGrey">Задача -</span> {currentTask.title}
             </h3>
             <TimerControls />
           </div>

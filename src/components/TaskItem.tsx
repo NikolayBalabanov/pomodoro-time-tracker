@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../hooks/redux';
 import { editTask, removeTask } from '../redux/Slices/tasksSlice';
 import EditableTitle from './EditableTitle';
-import DropDown from './UI/DropDown/DropDown';
+import DropDown from './UI/DropDown/TaskDropDown';
 import Confirm from './UI/Modals/Confirm';
 import Notification from './UI/Modals/Notification';
 

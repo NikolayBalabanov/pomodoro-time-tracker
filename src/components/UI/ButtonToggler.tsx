@@ -1,7 +1,8 @@
 import React from 'react';
+import ButtonColored from './ButtonColored';
 import { useAppDispatch } from '../../hooks/redux';
 import { startTimer, toggleTimer } from '../../redux/Slices/timerSlice';
-import ButtonColored from './ButtonColored';
+import { incrementPauses } from '../../redux/Slices/statisticsSlice';
 
 enum ETogglerText {
   start = 'Старт',
@@ -22,6 +23,7 @@ export default function ButtonToggler({ isStarted, isRunning }: IButtonToggler) 
   };
   const handleToggle = () => {
     dispatch(toggleTimer());
+    if (isRunning) dispatch(incrementPauses());
   };
   return (
     <>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { reset, stopTimer, switchStage } from '../../redux/Slices/timerSlice';
 import { shiftTask } from '../../redux/Slices/tasksSlice';
-import { incrementPomodoros } from '../../redux/Slices/statisticsSlice';
+import { incrementPauses, incrementPomodoros } from '../../redux/Slices/statisticsSlice';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { EStages } from '../../models/timer';
 
@@ -31,6 +31,7 @@ export default function ButtonStop({ stage, text, isRunning, isStarted }: IButto
   };
   const handleStop = () => {
     dispatch(stopTimer());
+    dispatch(incrementPauses());
   };
   const curCallback = () => {
     if (isStarted && !isRunning && stage === EStages.session) return handleDone;

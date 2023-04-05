@@ -158,6 +158,22 @@
   }
 }
 
+.select-item {
+  @apply flex items-center justify-between w-[370px] px-[15px] py-[19px] text-colorText text-base leading-4 bg-gray-50 hover:bg-colorGrey transition-colors duration-200;
+}
+
+.select-item:not(:last-child) {
+  @apply border-b border-b-colorGrey;
+}
+
+.focus-svg path {
+  stroke: currentColor;
+}
+
+.board-svg path {
+  stroke: currentColor;
+}
+
 .task-enter {
   transform: translateX(-200px);
 }
