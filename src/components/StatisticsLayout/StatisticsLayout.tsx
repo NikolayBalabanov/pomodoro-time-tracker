@@ -26,16 +26,18 @@ export default function StatisticsLayout() {
   }, [currentDay, currentWeek, dispatch]);
   return (
     <>
-      <div className="mb-[40px] flex justify-between">
-        <h2 className="font-bold text-2xl text-colorText">Ваша активность</h2>
+      <div className="md:mb-[40px] mb-4 flex justify-between sm:flex-row flex-col">
+        <h2 className="sm:mb-0 mb-2 font-bold text-2xl text-colorText dark:text-colorGrey">
+          Ваша активность
+        </h2>
         <SelectWeek current={currentWeek} onChangeWeek={setCurrentWeek} />
       </div>
-      <div className="grid grid-cols-12 gap-8">
-        <div className="col-span-3 flex flex-col gap-8">
+      <div className="xl:grid grid-cols-12 xl:grid-rows-1 flex flex-col-reverse md:gap-8 gap-4">
+        <div className="xl:col-span-3 col-span-12 flex xl:flex-col sm:flex-row flex-col justify-between md:gap-8 gap-4">
           <DayBoard day={currentDay} time={sessionTimer} />
           <PomodoroCount pomodoros={pomodoros} />
         </div>
-        <div className="col-span-9">
+        <div className="xl:col-span-9 col-span-12">
           <WeekBoard
             current={currentDay}
             weekData={statisticsByWeek}
@@ -43,7 +45,7 @@ export default function StatisticsLayout() {
           />
         </div>
       </div>
-      <div className="grid grid-cols-3 gap-8">
+      <div className="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 md:gap-8 gap-4">
         <FocusBoard breakTime={breakTimer} sessionTime={sessionTimer} />
         <BreakTimeBoard breakTime={breakTimer} />
         <PausesBoard pauses={pauses} />

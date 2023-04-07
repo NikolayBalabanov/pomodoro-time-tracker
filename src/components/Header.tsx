@@ -6,7 +6,7 @@ import ThemeSwitcher from './ThemeSwitcher';
 
 export default function Header() {
   return (
-    <header className="lg:px-20 pr-4 pl-4 shadow-lg dark:bg-colorText transition-colors duration-500">
+    <header className="lg:px-20 pr-4 pl-4 shadow-lg dark:bg-gray-700 transition-colors duration-500">
       <nav className="flex items-center justify-between pt-4 pb-4 ">
         <Link className="nav-link flex items-center" to="/" aria-label="to main page">
           <Logo />

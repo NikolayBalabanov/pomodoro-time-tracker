@@ -7,8 +7,7 @@ interface IPausesBuard {
 }
 
 export default function PausesBoard({ pauses }: IPausesBuard) {
-  const styles =
-    'flex p-[25px] justify-between w-full items-center bg-colorSemiBlue text-colorBlue';
+  const styles = 'mini-board bg-colorSemiBlue text-colorBlue';
   return (
     <StatBoard
       Icon={<Icon name={EIcons.pauses} styles="board-svg" />}

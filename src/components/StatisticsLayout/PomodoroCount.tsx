@@ -7,14 +7,14 @@ interface IPomodoroEmpty {
 
 export default function PomodoroCount({ pomodoros }: IPomodoroEmpty) {
   return (
-    <div className="bg-colorBg">
+    <div className="bg-colorBg xl:w-auto sm:w-1/2 w-full dark:bg-gray-300">
       {!pomodoros ? (
         <div className="py-[32px] px-[90px]">
-          <Icon name={EIcons.pomodoroEmpty} />
+          <Icon name={EIcons.pomodoroEmpty} styles="mx-auto" />
         </div>
       ) : (
         <div className="flex flex-col">
-          <div className="flex justify-center items-center py-[23px]">
+          <div className="flex justify-center items-center mx-auto py-[23px]">
             <Icon name={EIcons.pomodoro} styles="mr-[10px]" />
             <span className="font-bold text-2xl text-colorTextGrey">x {pomodoros}</span>
           </div>

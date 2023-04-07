@@ -8,8 +8,7 @@ interface IFocusBoard {
 }
 
 export default function FocusBoard({ breakTime, sessionTime }: IFocusBoard) {
-  const styles =
-    'flex p-[25px] justify-between w-full items-center block bg-colorSemiGold text-colorGold';
+  const styles = 'mini-board bg-colorSemiGold text-colorGold';
   const content =
     sessionTime === 0 && breakTime === 0
       ? 0

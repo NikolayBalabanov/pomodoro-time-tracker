@@ -22,7 +22,7 @@ export default function WeekBoard({ current, weekData, onDayChange }: IWeekBoard
   return (
     <Bar
       data={data}
-      className="bg-colorBg cursor-pointer"
+      className="bg-colorBg cursor-pointer dark:bg-gray-300"
       options={options}
       ref={bar}
       onClick={onClickBar}

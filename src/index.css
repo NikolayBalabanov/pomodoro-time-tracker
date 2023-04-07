@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer components {
+  .body {
+    @apply dark:bg-colorText transition-colors duration-500 min-w-[320px];
+  }
+
   .logo-text {
     @apply font-light text-2xl leading-none;
   }
@@ -156,10 +160,14 @@
   .close-btn::after {
     transform: rotate(-45deg);
   }
+
+  .mini-board {
+    @apply flex sm:p-[25px] p-2 justify-between w-full items-center;
+  }
 }
 
 .select-item {
-  @apply flex items-center justify-between w-[370px] px-[15px] py-[19px] text-colorText text-base leading-4 bg-gray-50 hover:bg-colorGrey transition-colors duration-200;
+  @apply flex items-center justify-between sm:w-[370px] w-[200px] px-[15px] sm:py-[19px] py-3 text-colorText text-base leading-4 bg-gray-50 hover:bg-colorGrey dark:bg-colorTextGrey dark:hover:bg-colorGrey transition-colors duration-200;
 }
 
 .select-item:not(:last-child) {

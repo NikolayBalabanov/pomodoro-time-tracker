@@ -12,7 +12,7 @@ export default function ThemeSwitcher() {
     dispatch(toggleTheme());
   };
   return (
-    <label className="relative block p-[2px] h-[34px] w-[64px] bg-colorGrey rounded-2xl text-black cursor-pointer transition-colors duration-500 dark:text-white dark:bg-slate-700">
+    <label className="relative block p-[2px] h-[34px] w-[64px] bg-colorTextGrey rounded-2xl text-black cursor-pointer transition-colors duration-500 dark:text-white">
       <input className="hidden" type="checkbox" name="" id="" onClick={() => onThemeChange()} />
       <Icon
         name={EIcons.pomodoro}

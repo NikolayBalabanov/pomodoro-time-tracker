@@ -8,8 +8,7 @@ interface IBreakTimeBoard {
 }
 
 export default function BreakTimeBoard({ breakTime }: IBreakTimeBoard) {
-  const styles =
-    'flex p-[25px] justify-between w-full items-center bg-colorSemiPurple text-colorPurple';
+  const styles = 'mini-board bg-colorSemiPurple text-colorPurple';
   const content = breakTime ? getHumanReadbleTime(breakTime, true) : '0c';
   return (
     <StatBoard
