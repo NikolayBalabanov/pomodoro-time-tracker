@@ -8,13 +8,10 @@ interface IButtonColoredProps {
 }
 
 export default function ButtonColored({ color, text, type, callback }: IButtonColoredProps) {
-  const greenStyles =
-    'bg-colorGreen border-colorGreen hover:bg-colorGreen2 hover:border-colorGreen2';
-  const redStyles = 'bg-colorRed border-colorRed hover:bg-colorRedHover hover:border-colorRedHover';
   return (
     <button
       type={type}
-      className={`btn ${color === 'green' ? greenStyles : redStyles}`}
+      className={`btn ${color === 'green' ? 'btn-green' : 'btn-red'}`}
       aria-label={text}
       onClick={() => callback()}
     >
