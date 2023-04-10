@@ -1,3 +1,269 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: 'San Francisco(SF UI)';
+  src: local('San Francisco(SF UI) Display Light'), local('San-Francisco(SF-UI)-Display-Light'),
+    url('./assets/fonts/SFUIDisplay-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'San Francisco(SF UI)';
+  src: local('San Francisco(SF UI) Display Thin'), local('San-Francisco(SF-UI)-Display-Thin'),
+    url('./assets/fonts/SFUIDisplay-Thin.woff2') format('woff2');
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'San Francisco(SF UI)';
+  src: local('San Francisco(SF UI) Display Regular'), local('San-Francisco(SF-UI)-Display-Regular'),
+    url('./assets/fonts/SFUIDisplay-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'San Francisco(SF UI)';
+  src: local('San Francisco(SF UI) Display Medium'), local('San-Francisco(SF-UI)-Display-Medium'),
+    url('./assets/fonts/SFUIDisplay-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'San Francisco(SF UI)';
+  src: local('San Francisco(SF UI) Display Bold'), local('San-Francisco(SF-UI)-Display-Bold'),
+    url('./assets/fonts/SFUIDisplay-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@layer components {
+  .body {
+    font-family: 'San Francisco(SF UI)', sans-serif;
+    @apply dark:bg-colorText transition-colors duration-500 min-w-[320px];
+  }
+
+  .logo-text {
+    @apply font-light text-2xl leading-none;
+  }
+
+  .nav-link {
+    @apply outline-none text-colorRed hover:text-colorRedHover focus-visible:text-colorRedHover transition-colors duration-200;
+  }
+
+  .descr-item {
+    position: relative;
+  }
+
+  .descr-item::before {
+    position: absolute;
+    content: '';
+    top: 50%;
+    left: 2px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: #b7280f;
+    transform: translateY(-50%);
+  }
+
+  .task-item {
+    position: relative;
+    border-bottom: 1px solid #e4e4e4;
+  }
+
+  .task-item:first-child {
+    border-top: 1px solid #e4e4e4;
+  }
+
+  .task-menu {
+    padding: 10px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #c4c4c4;
+    min-width: 26px;
+    height: 6px;
+    transition: color 0.2s ease-in-out;
+    outline: none;
+    @apply dark:hover:text-colorBg dark:focus-visible:text-colorBg;
+  }
+
+  .task-menu .task-menu__item {
+    width: 6px;
+    height: 6px;
+    background-color: currentColor;
+    border-radius: 100%;
+  }
+
+  .task-menu::after,
+  .task-menu::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background-color: currentColor;
+    border-radius: 100%;
+  }
+
+  .task-menu:hover,
+  .task-menu:focus-visible {
+    color: #333333;
+  }
+
+  .nav-svg path {
+    fill: currentColor;
+  }
+
+  .btn {
+    @apply outline-none md:py-[19px] md:px-[50px] py-[10px] px-[25px] font-medium text-base disabled:text-colorGrey disabled:border-colorGrey text-white leading-4 transition-colors duration-200 border-2;
+  }
+
+  .btn-pluse {
+    @apply outline-none md:w-[50px] md:h-[50px] w-[30px] h-[30px] flex items-center justify-center bg-colorGrey rounded-[100%] hover:bg-colorGreen2 dark-mode dark:bg-colorTextGrey dark:hover:bg-colorGreen2 focus-visible:bg-colorGreen2 dark:focus-visible:bg-colorGreen2;
+  }
+
+  .btn-sound {
+    @apply md:w-[50px] md:h-[50px] w-[30px] h-[30px] flex items-center justify-center absolute top-1/2 left-0 -translate-y-1/2 md:-translate-x-[78px] -translate-x-[34px] bg-colorGrey rounded-[100%] hover:bg-colorGreen2 dark-mode dark:bg-colorTextGrey dark:hover:bg-colorGreen2;
+  }
+
+  .btn-green {
+    @apply bg-colorGreen border-colorGreen hover:bg-colorGreen2 hover:border-colorGreen2 focus-visible:bg-colorGreen2 focus-visible:border-colorGreen2;
+  }
+
+  .btn-red {
+    @apply bg-colorRed border-colorRed hover:bg-colorRedHover hover:border-colorRedHover focus-visible:bg-colorRedHover focus-visible:border-colorRedHover;
+  }
+
+  .btn-stop {
+    @apply border-colorRed text-colorRed bg-transparent hover:bg-colorRed disabled:bg-transparent disabled:text-colorGrey hover:text-white focus-visible:bg-colorRed focus-visible:text-white;
+  }
+
+  .btn-pluse::after,
+  .btn-pluse::before {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 3px;
+    background-color: #ffffff;
+  }
+
+  .btn-pluse::before {
+    transform: rotate(-90deg);
+  }
+
+  .dropdown {
+    position: absolute;
+    z-index: 1;
+  }
+
+  .dropdown::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    border-top: 1px solid #c4c4c4;
+    border-left: 1px solid #c4c4c4;
+    border-bottom-right-radius: 20px;
+    background-color: #ffffff;
+    transform: translateX(-50%) rotate(45deg);
+  }
+
+  @media (max-width: 1023px) {
+    .dropdown::before {
+      left: auto;
+      right: 5px;
+    }
+  }
+
+  .decrement path {
+    fill: currentColor;
+  }
+
+  .underscored {
+    position: relative;
+  }
+
+  .underscored::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: currentColor;
+  }
+
+  .close-btn {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #c4c4c4;
+    width: 17px;
+    height: 17px;
+  }
+
+  .close-btn::after,
+  .close-btn::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: currentColor;
+  }
+
+  .close-btn::before {
+    transform: rotate(45deg);
+  }
+
+  .close-btn::after {
+    transform: rotate(-45deg);
+  }
+
+  .mini-board {
+    @apply flex sm:p-[25px] p-2 justify-between w-full items-center;
+  }
+
+  .select-item {
+    @apply flex items-center justify-between sm:w-[370px] w-[200px] px-[15px] sm:py-[19px] py-3 text-colorText text-base leading-4 bg-gray-50 outline-none hover:bg-colorGrey focus-visible:bg-colorGrey dark:bg-colorTextGrey dark:focus-visible:bg-colorGrey dark:hover:bg-colorGrey transition-colors duration-200;
+  }
+
+  .select-item:not(:last-child) {
+    @apply border-b border-b-colorGrey;
+  }
+
+  .dark-mode {
+    @apply transition-colors duration-500;
+  }
+}
+
+.focus-svg path {
+  stroke: currentColor;
+}
+
+.board-svg path {
+  stroke: currentColor;
+}
+
+.task-enter {
+  transform: translateX(-200px);
+}
+.task-enter-active {
+  transform: translateX(0px);
+  transition: transform 300ms ease-in;
+}
+.task-exit {
+  opacity: 1;
+}
+.task-exit-active {
+  opacity: 0;
+  transform: translateX(200px);
+  transition: transform 300ms ease-in, opacity 300ms ease-in;
+}
