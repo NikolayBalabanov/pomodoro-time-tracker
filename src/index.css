@@ -44,7 +44,7 @@
 
 @layer components {
   .body {
-    font-family: 'San Francisco(SF UI)';
+    font-family: 'San Francisco(SF UI)', sans-serif;
     @apply dark:bg-colorText transition-colors duration-500 min-w-[320px];
   }
 
