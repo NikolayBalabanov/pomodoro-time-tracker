@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSound } from 'use-sound';
-import toggle from '../../assets/toggle-stage-sound.wav';
+import toggle from '../../assets/sounds/toggle-stage-sound.wav';
 import TimerDisplay from './TimerDisplay';
 import TimerHeader from './TimerHeader';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';

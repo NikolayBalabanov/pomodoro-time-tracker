@@ -1,5 +1,5 @@
 import React from 'react';
-import freshTomatoImg from '../../assets/vector-tomato-ai-eps-removebg-preview.png';
+import freshTomatoImg from '../../assets/icons/vector-tomato-ai-eps-removebg-preview.png';
 
 export default function TimerInitial() {
   return (
