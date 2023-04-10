@@ -14,6 +14,7 @@ import {
   incrementBreakTimer,
   incrementPomodoros,
   incrementSessionTimer,
+  setActualData,
 } from '../../redux/Slices/statisticsSlice';
 
 export default function TimerLayout() {
@@ -29,6 +30,7 @@ export default function TimerLayout() {
       if (isFinish) {
         dispatch(reset());
         dispatch(shiftTask());
+        dispatch(setActualData());
         return;
       }
       if (!isTimerRunning && isTimerStarted) dispatch(incrementBreakTimer());
