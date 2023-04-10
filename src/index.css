@@ -2,8 +2,49 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'San Francisco(SF UI)';
+  src: local('San Francisco(SF UI) Display Light'), local('San-Francisco(SF-UI)-Display-Light'),
+    url('./assets/fonts/SFUIDisplay-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'San Francisco(SF UI)';
+  src: local('San Francisco(SF UI) Display Thin'), local('San-Francisco(SF-UI)-Display-Thin'),
+    url('./assets/fonts/SFUIDisplay-Thin.woff2') format('woff2');
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'San Francisco(SF UI)';
+  src: local('San Francisco(SF UI) Display Regular'), local('San-Francisco(SF-UI)-Display-Regular'),
+    url('./assets/fonts/SFUIDisplay-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'San Francisco(SF UI)';
+  src: local('San Francisco(SF UI) Display Medium'), local('San-Francisco(SF-UI)-Display-Medium'),
+    url('./assets/fonts/SFUIDisplay-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'San Francisco(SF UI)';
+  src: local('San Francisco(SF UI) Display Bold'), local('San-Francisco(SF-UI)-Display-Bold'),
+    url('./assets/fonts/SFUIDisplay-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
 @layer components {
   .body {
+    font-family: 'San Francisco(SF UI)';
     @apply dark:bg-colorText transition-colors duration-500 min-w-[320px];
   }
 

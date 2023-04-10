@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSound } from 'use-sound';
-import extraMinute from '../../assets/click-sound.wav';
+import extraMinute from '../../assets/sounds/click-sound.wav';
 import { EStages } from '../../models/timer';
 import { useAppDispatch } from '../../hooks/redux';
 import { addExtraMinute } from '../../redux/Slices/timerSlice';
