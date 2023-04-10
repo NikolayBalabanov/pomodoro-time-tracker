@@ -41,7 +41,7 @@ export default function ButtonStop({ stage, text, isRunning, isStarted }: IButto
   return (
     <button
       type="button"
-      className="btn border-colorRed text-colorRed bg-transparent hover:bg-colorRed hover:text-white"
+      className="btn border-colorRed text-colorRed bg-transparent hover:bg-colorRed disabled:bg-transparent disabled:text-colorGrey hover:text-white"
       aria-label={text}
       disabled={!isStarted}
       onClick={curCallback()}

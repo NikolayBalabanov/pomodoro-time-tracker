@@ -2,10 +2,10 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { EStages, ITimerState } from '../../models/timer';
 
 const initialState: ITimerState = {
-  session: 25, // 25
-  smallBreak: 5, // 5
-  longBreak: 15, // 15
-  timer: 60 * 25,
+  session: 5, // 25
+  smallBreak: 1, // 5
+  longBreak: 3, // 15
+  timer: 2 * 5,
   stage: EStages.session,
   roundsCount: 1,
   breaksCount: 1,
@@ -29,6 +29,9 @@ const timerSlice = createSlice({
     },
     startTimer: (state) => {
       state.isTimerStarted = !state.isTimerStarted;
+    },
+    addExtraMinute: (state) => {
+      state.timer += 60;
     },
     stopTimer: (state) => {
       return { ...initialState, breaksCount: state.breaksCount, roundsCount: state.roundsCount };
@@ -63,6 +66,6 @@ const timerSlice = createSlice({
   },
 });
 
-export const { reset, toggleTimer, setTimer, startTimer, switchStage, stopTimer } =
+export const { reset, toggleTimer, setTimer, startTimer, switchStage, stopTimer, addExtraMinute } =
   timerSlice.actions;
 export default timerSlice.reducer;
