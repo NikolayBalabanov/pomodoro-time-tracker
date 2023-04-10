@@ -53,7 +53,7 @@
   }
 
   .nav-link {
-    @apply text-colorRed hover:text-colorRedHover transition-colors duration-200;
+    @apply outline-none text-colorRed hover:text-colorRedHover focus-visible:text-colorRedHover transition-colors duration-200;
   }
 
   .descr-item {
@@ -90,6 +90,8 @@
     min-width: 26px;
     height: 6px;
     transition: color 0.2s ease-in-out;
+    outline: none;
+    @apply dark:hover:text-colorBg dark:focus-visible:text-colorBg;
   }
 
   .task-menu .task-menu__item {
@@ -118,15 +120,27 @@
   }
 
   .btn {
-    @apply md:py-[19px] md:px-[50px] py-[10px] px-[25px] font-medium text-base disabled:text-colorGrey disabled:border-colorGrey text-white leading-4 transition-colors duration-200 border-2;
+    @apply outline-none md:py-[19px] md:px-[50px] py-[10px] px-[25px] font-medium text-base disabled:text-colorGrey disabled:border-colorGrey text-white leading-4 transition-colors duration-200 border-2;
   }
 
   .btn-pluse {
-    @apply md:w-[50px] md:h-[50px] w-[30px] h-[30px] flex items-center justify-center bg-colorGrey rounded-[100%] hover:bg-colorGreen2 dark-mode dark:bg-colorTextGrey dark:hover:bg-colorGreen2;
+    @apply outline-none md:w-[50px] md:h-[50px] w-[30px] h-[30px] flex items-center justify-center bg-colorGrey rounded-[100%] hover:bg-colorGreen2 dark-mode dark:bg-colorTextGrey dark:hover:bg-colorGreen2 focus-visible:bg-colorGreen2 dark:focus-visible:bg-colorGreen2;
   }
 
   .btn-sound {
     @apply md:w-[50px] md:h-[50px] w-[30px] h-[30px] flex items-center justify-center absolute top-1/2 left-0 -translate-y-1/2 md:-translate-x-[78px] -translate-x-[34px] bg-colorGrey rounded-[100%] hover:bg-colorGreen2 dark-mode dark:bg-colorTextGrey dark:hover:bg-colorGreen2;
+  }
+
+  .btn-green {
+    @apply bg-colorGreen border-colorGreen hover:bg-colorGreen2 hover:border-colorGreen2 focus-visible:bg-colorGreen2 focus-visible:border-colorGreen2;
+  }
+
+  .btn-red {
+    @apply bg-colorRed border-colorRed hover:bg-colorRedHover hover:border-colorRedHover focus-visible:bg-colorRedHover focus-visible:border-colorRedHover;
+  }
+
+  .btn-stop {
+    @apply border-colorRed text-colorRed bg-transparent hover:bg-colorRed disabled:bg-transparent disabled:text-colorGrey hover:text-white focus-visible:bg-colorRed focus-visible:text-white;
   }
 
   .btn-pluse::after,
@@ -159,6 +173,13 @@
     border-bottom-right-radius: 20px;
     background-color: #ffffff;
     transform: translateX(-50%) rotate(45deg);
+  }
+
+  @media (max-width: 1023px) {
+    .dropdown::before {
+      left: auto;
+      right: 5px;
+    }
   }
 
   .decrement path {
@@ -209,18 +230,18 @@
   .mini-board {
     @apply flex sm:p-[25px] p-2 justify-between w-full items-center;
   }
-}
 
-.select-item {
-  @apply flex items-center justify-between sm:w-[370px] w-[200px] px-[15px] sm:py-[19px] py-3 text-colorText text-base leading-4 bg-gray-50 hover:bg-colorGrey dark:bg-colorTextGrey dark:hover:bg-colorGrey transition-colors duration-200;
-}
+  .select-item {
+    @apply flex items-center justify-between sm:w-[370px] w-[200px] px-[15px] sm:py-[19px] py-3 text-colorText text-base leading-4 bg-gray-50 outline-none hover:bg-colorGrey focus-visible:bg-colorGrey dark:bg-colorTextGrey dark:focus-visible:bg-colorGrey dark:hover:bg-colorGrey transition-colors duration-200;
+  }
 
-.select-item:not(:last-child) {
-  @apply border-b border-b-colorGrey;
-}
+  .select-item:not(:last-child) {
+    @apply border-b border-b-colorGrey;
+  }
 
-.dark-mode {
-  @apply transition-colors duration-500;
+  .dark-mode {
+    @apply transition-colors duration-500;
+  }
 }
 
 .focus-svg path {
