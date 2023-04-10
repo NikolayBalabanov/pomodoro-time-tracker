@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import { reset } from '../redux/Slices/timerSlice';
 import { useAppDispatch, useAppSelector } from '../hooks/redux';
 import { editTask, removeTask, setCurrentTask } from '../redux/Slices/tasksSlice';
+import Confirm from './UI/Modals/Confirm';
 import EditableTitle from './EditableTitle';
 import DropDown from './UI/DropDown/TaskDropDown';
-import Confirm from './UI/Modals/Confirm';
 import Notification from './UI/Modals/Notification';
 
 interface ITaskItemProps {
@@ -24,14 +25,22 @@ export default function TaskItem({ count, id, title }: ITaskItemProps) {
     dispatch(editTask({ id: id, title: newTitle }));
   };
   const deleteTask = () => dispatch(removeTask(id));
-  const handleDropDown = () => {
+  const checkTimerRuning = () => {
     if (isTimerRunning) {
       setIsNotice(true);
-      return;
+      return true;
     }
+    return false;
+  };
+  const handleDropDown = () => {
+    if (checkTimerRuning()) return;
     setIsDropDown(!isDropDown);
   };
-  const handlePick = () => dispatch(setCurrentTask(id));
+  const handlePick = () => {
+    if (checkTimerRuning()) return;
+    dispatch(setCurrentTask(id));
+    dispatch(reset());
+  };
   const onDropDownClose = () => setIsDropDown(!isDropDown);
   const modalClose = () => setIsModal(false);
   const noticeClose = () => setIsNotice(false);

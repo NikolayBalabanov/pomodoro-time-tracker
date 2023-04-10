@@ -51,7 +51,7 @@ export default function EditableTitle({
       ) : (
         <h2
           onClick={() => handlePick()}
-          className="mr-auto px-[5px] py-[4px] text-base leading-none overflow-x-clip dark-mode dark:text-colorBg"
+          className="mr-auto px-[5px] py-[4px] text-base hover:bg-colorGrey rounded dark:hover:text-colorText cursor-pointer leading-none overflow-x-clip dark-mode dark:text-colorBg"
         >
           {title.length > 0 ? title : 'Default title'}
         </h2>
