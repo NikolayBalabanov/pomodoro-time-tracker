@@ -84,6 +84,10 @@
     @apply md:w-[50px] md:h-[50px] w-[30px] h-[30px] flex items-center justify-center bg-colorGrey rounded-[100%] hover:bg-colorGreen2 dark-mode dark:bg-colorTextGrey dark:hover:bg-colorGreen2;
   }
 
+  .btn-sound {
+    @apply md:w-[50px] md:h-[50px] w-[30px] h-[30px] flex items-center justify-center absolute top-1/2 left-0 -translate-y-1/2 md:-translate-x-[78px] -translate-x-[34px] bg-colorGrey rounded-[100%] hover:bg-colorGreen2 dark-mode dark:bg-colorTextGrey dark:hover:bg-colorGreen2;
+  }
+
   .btn-pluse::after,
   .btn-pluse::before {
     content: '';
