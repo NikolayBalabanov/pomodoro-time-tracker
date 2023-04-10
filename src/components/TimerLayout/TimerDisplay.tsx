@@ -1,4 +1,6 @@
 import React from 'react';
+import { useSound } from 'use-sound';
+import extraMinute from '../../assets/click-sound.wav';
 import { EStages } from '../../models/timer';
 import { useAppDispatch } from '../../hooks/redux';
 import { addExtraMinute } from '../../redux/Slices/timerSlice';
@@ -11,8 +13,10 @@ interface ITmerDisplay {
 
 export default function TimerDisplay({ stage, time, isRunning }: ITmerDisplay) {
   const dispatch = useAppDispatch();
+  const [play] = useSound(extraMinute);
   const handleAddExtraMinute = () => {
     dispatch(addExtraMinute());
+    play();
   };
   const curColor = !isRunning
     ? 'text-colorText dark-mode dark:text-white'

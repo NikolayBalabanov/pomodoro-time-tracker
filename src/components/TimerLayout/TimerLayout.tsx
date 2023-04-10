@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react';
+import { useSound } from 'use-sound';
+import toggle from '../../assets/toggle-stage-sound.wav';
 import TimerDisplay from './TimerDisplay';
 import TimerHeader from './TimerHeader';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
@@ -15,6 +17,7 @@ import {
 } from '../../redux/Slices/statisticsSlice';
 
 export default function TimerLayout() {
+  const [toggleSound] = useSound(toggle);
   const dispatch = useAppDispatch();
   const { statistics } = useAppSelector((state) => state.persistedReducer.statisticsSlice);
   const { tasks } = useAppSelector((state) => state.persistedReducer.tasksSlice);
@@ -32,6 +35,7 @@ export default function TimerLayout() {
       if (timer === 0 && isTimerRunning) {
         if (stage === EStages.session) dispatch(incrementPomodoros());
         dispatch(switchStage(currentTask?.rounds ?? 1));
+        toggleSound();
       }
       if (timer > 0 && isTimerRunning) {
         if (stage === EStages.session) dispatch(incrementSessionTimer());
