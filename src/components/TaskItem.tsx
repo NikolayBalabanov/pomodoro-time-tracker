@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../hooks/redux';
-import { editTask, removeTask } from '../redux/Slices/tasksSlice';
+import { editTask, removeTask, setCurrentTask } from '../redux/Slices/tasksSlice';
 import EditableTitle from './EditableTitle';
 import DropDown from './UI/DropDown/TaskDropDown';
 import Confirm from './UI/Modals/Confirm';
@@ -31,6 +31,7 @@ export default function TaskItem({ count, id, title }: ITaskItemProps) {
     }
     setIsDropDown(!isDropDown);
   };
+  const handlePick = () => dispatch(setCurrentTask(id));
   const onDropDownClose = () => setIsDropDown(!isDropDown);
   const modalClose = () => setIsModal(false);
   const noticeClose = () => setIsNotice(false);
@@ -44,6 +45,7 @@ export default function TaskItem({ count, id, title }: ITaskItemProps) {
       <EditableTitle
         title={title}
         edited={isTitleEditable}
+        onPickTask={handlePick}
         toggleEditable={toggleEditable}
         updateTitle={updateTitle}
       />
