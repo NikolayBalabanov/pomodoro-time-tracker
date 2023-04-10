@@ -36,7 +36,7 @@ export default function TaskDropDown({
   return (
     <ul
       ref={dropDown}
-      className="dropdown absolute w-[165px] h-[153px] py-[5px] list-none top-[44px] -right-[69px] border border-colorGrey bg-white"
+      className="dropdown absolute w-[165px] h-[153px] py-[5px] list-none top-[44px] lg:-right-[69px] right-0 border border-colorGrey bg-white"
     >
       <TaskDropDownList
         id={id}
