@@ -32,9 +32,15 @@ const tasksSlice = createSlice({
       const { id, title } = action.payload;
       state.tasks = state.tasks.map((el) => (el.id === id ? { ...el, title: title } : el));
     },
+    setCurrentTask: (state, action: PayloadAction<string>) => {
+      const id = action.payload;
+      const pickedTaskIndex = state.tasks.findIndex((task) => task.id === id);
+      const pickedTask = state.tasks.splice(pickedTaskIndex, 1);
+      state.tasks.unshift(...pickedTask);
+    },
   },
 });
 
-export const { addTask, removeTask, shiftTask, subtractRound, addRound, editTask } =
+export const { addTask, removeTask, shiftTask, subtractRound, addRound, editTask, setCurrentTask } =
   tasksSlice.actions;
 export default tasksSlice.reducer;

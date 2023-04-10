@@ -5,11 +5,13 @@ interface IEditableProps {
   edited: boolean;
   updateTitle: (e: string) => void;
   toggleEditable: () => void;
+  onPickTask: () => void;
 }
 
 export default function EditableTitle({
   edited,
   title,
+  onPickTask,
   updateTitle,
   toggleEditable,
 }: IEditableProps) {
@@ -17,6 +19,12 @@ export default function EditableTitle({
   const save = () => {
     toggleEditable();
     updateTitle(inputRef.current?.value as string);
+  };
+
+  const handlePick = () => {
+    if (!edited) {
+      onPickTask();
+    }
   };
 
   const handleKeyDown = ({ key }: React.KeyboardEvent) => {
@@ -41,7 +49,10 @@ export default function EditableTitle({
           defaultValue={title}
         />
       ) : (
-        <h2 className="mr-auto px-[5px] py-[4px] text-base leading-none overflow-x-clip dark-mode dark:text-colorBg">
+        <h2
+          onClick={() => handlePick()}
+          className="mr-auto px-[5px] py-[4px] text-base hover:bg-colorGrey rounded dark:hover:text-colorText cursor-pointer leading-none overflow-x-clip dark-mode dark:text-colorBg"
+        >
           {title.length > 0 ? title : 'Default title'}
         </h2>
       )}
