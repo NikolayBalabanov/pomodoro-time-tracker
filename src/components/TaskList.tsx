@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { memo } from 'react';
 import TaskItem from './TaskItem';
 import { useAppSelector } from '../hooks/redux';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { getHumanReadbleTime } from '../utils/getHumanReadbleTime';
+import { getTotalTasksTime } from '../utils/getTotalTaskTime';
 
-export default function TaskList() {
+const TaskList = memo(() => {
   const { tasks } = useAppSelector((store) => store.persistedReducer.tasksSlice);
+  const { session } = useAppSelector((store) => store.persistedReducer.timerSlice);
+  const totalTime = getHumanReadbleTime(getTotalTasksTime(tasks, session), true);
   return (
     <div>
       <ul className="mb-5 xl:w-[370px] w-full flex flex-col items-start list-none">
@@ -16,7 +20,9 @@ export default function TaskList() {
           ))}
         </TransitionGroup>
       </ul>
-      <span className="dark-mode dark:text-colorGrey">1 час 15 мин</span>
+      <span className="dark-mode dark:text-colorGrey">{totalTime}</span>
     </div>
   );
-}
+});
+
+export default TaskList;

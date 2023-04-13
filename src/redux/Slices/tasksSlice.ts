@@ -4,6 +4,7 @@ import { v1 as uuidv1 } from 'uuid';
 
 const initialState: ITaskState = {
   tasks: [],
+  totalTasksTime: 0,
 };
 
 const tasksSlice = createSlice({
