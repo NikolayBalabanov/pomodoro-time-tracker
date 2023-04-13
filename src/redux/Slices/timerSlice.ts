@@ -2,10 +2,10 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { EStages, ITimerState } from '../../models/timer';
 
 const initialState: ITimerState = {
-  session: 5, // 25
-  smallBreak: 1, // 5
-  longBreak: 3, // 15
-  timer: 2 * 5,
+  session: 25,
+  smallBreak: 5,
+  longBreak: 15,
+  timer: 60 * 25,
   stage: EStages.session,
   roundsCount: 1,
   breaksCount: 1,
@@ -42,10 +42,10 @@ const timerSlice = createSlice({
         if (state.roundsCount <= taskRounds) {
           if (state.roundsCount % 4 === 0) {
             state.stage = EStages.longBreak;
-            state.timer = state.longBreak * 5;
+            state.timer = state.longBreak * 60;
           } else {
             state.stage = EStages.smallBreak;
-            state.timer = state.smallBreak * 3;
+            state.timer = state.smallBreak * 60;
           }
           state.roundsCount += 1;
         } else {
@@ -56,7 +56,7 @@ const timerSlice = createSlice({
         if (state.roundsCount <= taskRounds) {
           state.breaksCount += 1;
           state.stage = EStages.session;
-          state.timer = state.session * 5;
+          state.timer = state.session * 60;
         } else {
           state.isTimerRunning = false;
           state.isFinish = true;
