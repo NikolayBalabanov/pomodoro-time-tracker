@@ -1,4 +1,4 @@
-import { TWeekDays } from './weekDays';
+import { EWeekDays } from './weekDays';
 
 export interface IStatisticsState {
   statistics: TStatItem;
@@ -24,7 +24,7 @@ export type TStatItemObj = {
 
 export interface IByDay {
   week: number;
-  day: TWeekDays;
+  day: EWeekDays;
 }
 
 export interface IByWeek {

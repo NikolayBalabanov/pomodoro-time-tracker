@@ -1,8 +1,8 @@
 import dayjs from 'dayjs';
 import weekday from 'dayjs/plugin/weekday';
-import { TWeekDays } from '../models/weekDays';
+import { EWeekDays } from '../models/weekDays';
 
-type TGetDate = (week: number, day: TWeekDays) => string;
+type TGetDate = (week: number, day: EWeekDays) => string;
 
 const getDate: TGetDate = (week, day) => {
   dayjs.extend(weekday);

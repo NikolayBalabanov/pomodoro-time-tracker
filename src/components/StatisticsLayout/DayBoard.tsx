@@ -1,9 +1,9 @@
 import { getHumanReadbleTime } from '../../utils/getHumanReadbleTime';
-import { TWeekDays } from '../../models/weekDays';
+import { EWeekDays } from '../../models/weekDays';
 import React from 'react';
 
 interface IDayBoardProps {
-  day: TWeekDays;
+  day: EWeekDays;
   time: number;
 }
 
