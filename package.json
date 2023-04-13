@@ -2,6 +2,7 @@
   "name": "pamadoro-time-tracker",
   "private": true,
   "version": "0.0.0",
+  "author": "Nikolai Balabanov",
   "type": "module",
   "scripts": {
     "dev": "vite --open",
