@@ -2,9 +2,9 @@ import getDate from './getDate';
 import todayWeekDay from './todayWeekDay';
 import isValidDay from './isValidDay';
 import { TStatItem, TStatItemObj } from '../models/statistics';
-import { TWeekDays } from '../models/weekDays';
+import { EWeekDays } from '../models/weekDays';
 
-type TIGetStatisticsByDay = (week: number, day: TWeekDays, statistics: TStatItem) => TStatItemObj;
+type TIGetStatisticsByDay = (week: number, day: EWeekDays, statistics: TStatItem) => TStatItemObj;
 
 const getStatisticsByDay: TIGetStatisticsByDay = (week, day, statistics) => {
   const targetDay = getDate(week, day);

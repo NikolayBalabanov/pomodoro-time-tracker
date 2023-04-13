@@ -1,10 +1,7 @@
 import React from 'react';
+import { IIconsProp } from '../../../types/icon';
 
-interface IBreaksIcon {
-  styles?: string;
-}
-
-export default function BreaksIcon({ styles }: IBreaksIcon) {
+export default function BreaksIcon({ styles }: IIconsProp) {
   return (
     <svg
       className={styles}

@@ -1,10 +1,7 @@
 import React from 'react';
+import { IIconsProp } from '../../../types/icon';
 
-interface IIconProp {
-  styles?: string;
-}
-
-export default function DecrementIcon({ styles }: IIconProp) {
+export default function DecrementIcon({ styles }: IIconsProp) {
   return (
     <svg
       className={`${styles} decrement`}

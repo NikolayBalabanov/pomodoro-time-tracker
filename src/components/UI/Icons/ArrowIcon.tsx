@@ -1,10 +1,7 @@
 import React from 'react';
+import { IIconsProp } from '../../../types/icon';
 
-interface IArrowIcon {
-  styles?: string;
-}
-
-export default function ArrowIcon({ styles }: IArrowIcon) {
+export default function ArrowIcon({ styles }: IIconsProp) {
   return (
     <svg
       className={styles}

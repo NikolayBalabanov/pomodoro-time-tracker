@@ -1,10 +1,7 @@
 import React from 'react';
 import StatBoard from './StatBoard';
 import Icon, { EIcons } from '../UI/Icon';
-
-interface IPausesBuard {
-  pauses: number;
-}
+import { IPausesBuard } from '../../types/statistics';
 
 export default function PausesBoard({ pauses }: IPausesBuard) {
   const styles = 'mini-board bg-colorSemiBlue text-colorBlue';

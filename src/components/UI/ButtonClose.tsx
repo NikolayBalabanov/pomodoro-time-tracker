@@ -1,8 +1,5 @@
 import React from 'react';
-
-interface IButtonCloseProps {
-  callback: () => void;
-}
+import { IButtonCloseProps } from '../../types/buttons';
 
 export default function ButtonClose({ callback }: IButtonCloseProps) {
   return (

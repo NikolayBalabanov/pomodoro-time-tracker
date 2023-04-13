@@ -1,10 +1,7 @@
 import React from 'react';
+import { IIconsProp } from '../../../types/icon';
 
-interface IPomodoroIcon {
-  styles?: string;
-}
-
-export default function PomodoroIcon({ styles }: IPomodoroIcon) {
+export default function PomodoroIcon({ styles }: IIconsProp) {
   return (
     <svg
       className={styles}

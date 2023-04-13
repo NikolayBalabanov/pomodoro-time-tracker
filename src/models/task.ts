@@ -6,4 +6,5 @@ export interface ITask {
 
 export interface ITaskState {
   tasks: ITask[];
+  totalTasksTime: number;
 }

@@ -1,11 +1,5 @@
 import React from 'react';
-
-interface IButtonColoredProps {
-  text: string;
-  color: 'green' | 'red';
-  type: 'button' | 'submit';
-  callback: () => void;
-}
+import { IButtonColoredProps } from '../../types/buttons';
 
 export default function ButtonColored({ color, text, type, callback }: IButtonColoredProps) {
   return (

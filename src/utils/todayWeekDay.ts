@@ -1,11 +1,11 @@
 import dayjs from 'dayjs';
-import { TWeekDays } from '../models/weekDays';
+import { EWeekDays } from '../models/weekDays';
 
-type TTodayWeekDay = () => TWeekDays;
+type TTodayWeekDay = () => EWeekDays;
 
 const todayWeekDay: TTodayWeekDay = () => {
   const weekDay = dayjs().day() === 0 ? 7 : dayjs().day();
-  return weekDay as TWeekDays;
+  return weekDay as EWeekDays;
 };
 
 export default todayWeekDay;

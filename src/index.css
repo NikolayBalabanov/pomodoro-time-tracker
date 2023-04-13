@@ -56,6 +56,23 @@
     @apply outline-none text-colorRed hover:text-colorRedHover focus-visible:text-colorRedHover transition-colors duration-200;
   }
 
+  .description {
+    @apply flex flex-col transition-all overflow-hidden overflow-y-auto duration-500;
+  }
+
+  .description::-webkit-scrollbar {
+    width: 0.5vw;
+  }
+  .description::-webkit-scrollbar-thumb {
+    background: #b7280f;
+    border-radius: 10px;
+  }
+
+  .description::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px gray;
+    border-radius: 10px;
+  }
+
   .descr-item {
     position: relative;
   }
@@ -72,13 +89,30 @@
     transform: translateY(-50%);
   }
 
-  .task-item {
+  .task {
     position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding-top: 15px;
+    padding-bottom: 15px;
     border-bottom: 1px solid #e4e4e4;
   }
 
-  .task-item:first-child {
+  .task:first-child {
     border-top: 1px solid #e4e4e4;
+  }
+
+  .task__counter {
+    @apply mr-[10px] text-base leading-none flex items-center justify-center min-w-[25px] h-[25px] border border-colorGrey rounded-full dark-mode dark:bg-colorGrey;
+  }
+
+  .task__title {
+    @apply mr-auto px-[5px] py-[4px] text-base hover:bg-colorGrey rounded dark:hover:text-colorText cursor-pointer leading-none overflow-x-clip dark-mode dark:text-colorBg;
+  }
+
+  .task__input {
+    @apply mr-auto w-fit px-[5px] pt-[1px] pb-[2px] text-base leading-none border-none bg-colorBg outline-none;
   }
 
   .task-menu {
@@ -141,6 +175,10 @@
 
   .btn-stop {
     @apply border-colorRed text-colorRed bg-transparent hover:bg-colorRed disabled:bg-transparent disabled:text-colorGrey hover:text-white focus-visible:bg-colorRed focus-visible:text-white;
+  }
+
+  .btn-descr {
+    @apply absolute z-10 -top-8 left-0 w-8 h-8 p-1 flex items-center justify-center rounded-full bg-colorBg hover:bg-colorTextGrey dark:bg-colorTextGrey dark:hover:bg-colorGrey;
   }
 
   .btn-pluse::after,
@@ -251,6 +289,8 @@
 .board-svg path {
   stroke: currentColor;
 }
+
+/* Transition groups */
 
 .task-enter {
   transform: translateX(-200px);

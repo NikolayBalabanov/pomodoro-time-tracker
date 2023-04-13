@@ -1,17 +1,12 @@
 import React, { useState } from 'react';
-import { reset } from '../redux/Slices/timerSlice';
-import { useAppDispatch, useAppSelector } from '../hooks/redux';
-import { editTask, removeTask, setCurrentTask } from '../redux/Slices/tasksSlice';
 import Confirm from './UI/Modals/Confirm';
 import EditableTitle from './EditableTitle';
 import DropDown from './UI/DropDown/TaskDropDown';
+import { reset } from '../redux/Slices/timerSlice';
+import { ITaskItemProps } from '../types/taskItem';
 import Notification from './UI/Modals/Notification';
-
-interface ITaskItemProps {
-  title: string;
-  count: number;
-  id: string;
-}
+import { useAppDispatch, useAppSelector } from '../hooks/redux';
+import { editTask, removeTask, setCurrentTask } from '../redux/Slices/tasksSlice';
 
 export default function TaskItem({ count, id, title }: ITaskItemProps) {
   const { isTimerRunning } = useAppSelector((state) => state.persistedReducer.timerSlice);
@@ -47,10 +42,8 @@ export default function TaskItem({ count, id, title }: ITaskItemProps) {
   const modalOpen = () => setIsModal(true);
 
   return (
-    <li className="task-item flex items-center w-full py-[15px]">
-      <span className="mr-[10px] text-base leading-none flex items-center justify-center min-w-[25px] h-[25px] border border-colorGrey rounded-full dark-mode dark:bg-colorGrey">
-        {count}
-      </span>
+    <li className="task">
+      <span className="task__counter">{count}</span>
       <EditableTitle
         title={title}
         edited={isTitleEditable}

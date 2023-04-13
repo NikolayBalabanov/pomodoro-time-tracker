@@ -4,18 +4,12 @@ import { shiftTask } from '../../redux/Slices/tasksSlice';
 import { incrementPauses, incrementPomodoros } from '../../redux/Slices/statisticsSlice';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { EStages } from '../../models/timer';
+import { IButtonStopProps } from '../../types/buttons';
 
 enum EStopText {
   stop = 'Стоп',
   done = 'Сделано',
   skip = 'Пропустить',
-}
-
-interface IButtonStopProps {
-  text: string;
-  stage: EStages;
-  isStarted: boolean;
-  isRunning: boolean;
 }
 
 export default function ButtonStop({ stage, text, isRunning, isStarted }: IButtonStopProps) {

@@ -1,1 +1,9 @@
-export type TWeekDays = 1 | 2 | 3 | 4 | 5 | 6 | 7;
+export enum EWeekDays {
+  monday = 1,
+  tuesday = 2,
+  wednesday = 3,
+  thursday = 4,
+  friday = 5,
+  saturday = 6,
+  sunday = 7,
+}

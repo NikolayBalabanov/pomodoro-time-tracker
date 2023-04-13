@@ -1,13 +1,6 @@
-import { EStages } from '../../models/timer';
 import React from 'react';
-
-interface ITimerHeader {
-  title: string;
-  stage: EStages;
-  isStarted: boolean;
-  countRounds: number;
-  countBreaks: number;
-}
+import { ITimerHeader } from '../../types/timer';
+import { EStages } from '../../models/timer';
 
 enum EBgColors {
   Session = 'bg-colorRed',

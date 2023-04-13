@@ -1,16 +1,9 @@
 import React from 'react';
+import { EIcons } from '../Icon';
+import DropDownItem from './TaskDropDownItem';
 import { useAppDispatch } from '../../../hooks/redux';
 import { addRound, subtractRound } from '../../../redux/Slices/tasksSlice';
-import { EIcons } from '../Icon';
-import DropDownItem, { ITaskDropDownItemProps } from './TaskDropDownItem';
-
-interface ITaskDropDownListProps {
-  id: string;
-  count: number;
-  onDelete: () => void;
-  onClose: () => void;
-  toggleEditable: () => void;
-}
+import { ITaskDropDownItemProps, ITaskDropDownListProps } from '../../../types/dropDown';
 
 export default function TaskDropDownList({
   count,

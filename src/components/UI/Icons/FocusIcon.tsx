@@ -1,10 +1,7 @@
 import React from 'react';
+import { IIconsProp } from '../../../types/icon';
 
-interface IFocusIcon {
-  styles?: string;
-}
-
-export default function FocusIcon({ styles }: IFocusIcon) {
+export default function FocusIcon({ styles }: IIconsProp) {
   return (
     <svg
       className={styles}

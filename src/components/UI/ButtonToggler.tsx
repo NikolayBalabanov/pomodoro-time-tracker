@@ -3,16 +3,12 @@ import ButtonColored from './ButtonColored';
 import { useAppDispatch } from '../../hooks/redux';
 import { startTimer, toggleTimer } from '../../redux/Slices/timerSlice';
 import { incrementPauses } from '../../redux/Slices/statisticsSlice';
+import { IButtonToggler } from '../../types/buttons';
 
 enum ETogglerText {
   start = 'Старт',
   pause = 'Пауза',
   continue = 'Продолжить',
-}
-
-interface IButtonToggler {
-  isStarted: boolean;
-  isRunning: boolean;
 }
 
 export default function ButtonToggler({ isStarted, isRunning }: IButtonToggler) {

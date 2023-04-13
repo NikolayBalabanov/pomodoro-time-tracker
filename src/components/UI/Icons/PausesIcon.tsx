@@ -1,10 +1,7 @@
 import React from 'react';
+import { IIconsProp } from '../../../types/icon';
 
-interface IPausesIcon {
-  styles?: string;
-}
-
-export default function PausesIcon({ styles }: IPausesIcon) {
+export default function PausesIcon({ styles }: IIconsProp) {
   return (
     <svg
       className={styles}

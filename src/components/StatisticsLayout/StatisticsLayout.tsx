@@ -6,7 +6,7 @@ import FocusBoard from './FocusBoard';
 import PausesBoard from './PausesBoard';
 import PomodoroCount from './PomodoroCount';
 import BreakTimeBoard from './BreakTimeBoard';
-import { TWeekDays } from '../../models/weekDays';
+import { EWeekDays } from '../../models/weekDays';
 import todayWeekDay from '../../utils/todayWeekDay';
 import SelectWeek from '../../components/UI/SelectWeek/SelectWeek';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
@@ -18,8 +18,10 @@ export default function StatisticsLayout() {
     statisticsByDay: { breakTimer, pauses, pomodoros, sessionTimer },
     statisticsByWeek,
   } = useAppSelector((state) => state.persistedReducer.statisticsSlice);
+
   const [currentWeek, setCurrentWeek] = useState<number>(0);
-  const [currentDay, setCurrentDay] = useState<TWeekDays>(todayWeekDay());
+  const [currentDay, setCurrentDay] = useState<EWeekDays>(todayWeekDay());
+
   useEffect(() => {
     dispatch(setStatisticsByWeek(currentWeek));
     dispatch(setStatisticsByDay({ week: currentWeek, day: currentDay }));
@@ -41,7 +43,7 @@ export default function StatisticsLayout() {
           <WeekBoard
             current={currentDay}
             weekData={statisticsByWeek}
-            onDayChange={(day: TWeekDays) => setCurrentDay(day)}
+            onDayChange={(day: EWeekDays) => setCurrentDay(day)}
           />
         </div>
       </div>

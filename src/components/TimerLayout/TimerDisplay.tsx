@@ -1,15 +1,10 @@
 import React from 'react';
 import { useSound } from 'use-sound';
-import extraMinute from '../../assets/sounds/click-sound.wav';
 import { EStages } from '../../models/timer';
+import { ITmerDisplay } from '../../types/timer';
 import { useAppDispatch } from '../../hooks/redux';
+import extraMinute from '../../assets/sounds/click-sound.wav';
 import { addExtraMinute } from '../../redux/Slices/timerSlice';
-
-interface ITmerDisplay {
-  time: string;
-  stage: EStages;
-  isRunning: boolean;
-}
 
 export default function TimerDisplay({ stage, time, isRunning }: ITmerDisplay) {
   const dispatch = useAppDispatch();

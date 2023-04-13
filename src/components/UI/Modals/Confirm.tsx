@@ -2,11 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import ButtonClose from '../ButtonClose';
 import ButtonConfirm from '../ButtonConfirm';
 import ButtonUnderscored from '../ButtonUnderscored';
-
-interface IConfirmProps {
-  onClose: () => void;
-  onConfirm: () => void;
-}
+import { IConfirmProps } from '../../../types/modals';
 
 export default function Confirm({ onClose, onConfirm }: IConfirmProps) {
   const modal = useRef<HTMLDivElement | null>(null);

@@ -1,12 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import ButtonConfirm from '../ButtonConfirm';
 import ButtonClose from '../ButtonClose';
+import { INotificationProps } from '../../../types/modals';
 
-interface IConfirmProps {
-  onClose: () => void;
-}
-
-export default function Notification({ onClose }: IConfirmProps) {
+export default function Notification({ onClose }: INotificationProps) {
   const modal = useRef<HTMLDivElement | null>(null);
   const modalContent = useRef<HTMLDivElement | null>(null);
 
