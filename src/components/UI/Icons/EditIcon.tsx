@@ -1,10 +1,7 @@
 import React from 'react';
+import { IIconsProp } from '../../../types/icon';
 
-interface IIconProp {
-  styles?: string;
-}
-
-export default function EditIcon({ styles }: IIconProp) {
+export default function EditIcon({ styles }: IIconsProp) {
   return (
     <svg
       className={styles}

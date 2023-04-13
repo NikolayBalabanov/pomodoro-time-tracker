@@ -11,6 +11,7 @@ import FocusIcon from './Icons/FocusIcon';
 import BreaksIcon from './Icons/BreaksIcon';
 import PausesIcon from './Icons/PausesIcon';
 import ArrowIcon from './Icons/ArrowIcon';
+import { IIconProps } from '../../types/icon';
 
 export enum EIcons {
   decrement = 'DecrementIcon',
@@ -25,11 +26,6 @@ export enum EIcons {
   breaks = 'Breaks',
   pauses = 'Pauses',
   arrow = 'Arrow',
-}
-
-interface IIconProps {
-  name: EIcons;
-  styles?: string;
 }
 
 export default function Icon(props: IIconProps) {

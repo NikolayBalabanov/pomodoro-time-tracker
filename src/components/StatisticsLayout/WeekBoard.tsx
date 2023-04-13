@@ -1,13 +1,8 @@
 import React, { useRef } from 'react';
-import { Bar, getElementAtEvent } from 'react-chartjs-2';
 import { EWeekDays } from '../../models/weekDays';
+import { IWeekBoard } from '../../types/statistics';
+import { Bar, getElementAtEvent } from 'react-chartjs-2';
 import getDashBoardOptions from '../../utils/getDashBoardOptions';
-
-interface IWeekBoard {
-  current: number;
-  weekData: [number, number, number, number, number, number, number];
-  onDayChange: (day: EWeekDays) => void;
-}
 
 export default function WeekBoard({ current, weekData, onDayChange }: IWeekBoard) {
   const bar = useRef(null);

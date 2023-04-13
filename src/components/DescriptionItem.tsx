@@ -1,8 +1,5 @@
 import React from 'react';
-
-interface IDescriptionItemProps {
-  text: string;
-}
+import { IDescriptionItemProps } from '../types/descriptionItem';
 
 export default function DescriptionItem({ text }: IDescriptionItemProps) {
   return (

@@ -1,11 +1,6 @@
-import { getHumanReadbleTime } from '../../utils/getHumanReadbleTime';
-import { EWeekDays } from '../../models/weekDays';
 import React from 'react';
-
-interface IDayBoardProps {
-  day: EWeekDays;
-  time: number;
-}
+import { IDayBoardProps } from '../../types/statistics';
+import { getHumanReadbleTime } from '../../utils/getHumanReadbleTime';
 
 const days = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Восскресенье'];
 
@@ -16,8 +11,8 @@ export default function DayBoard({ day, time }: IDayBoardProps) {
       <h2 className="mb-[14px] text-2xl font-bold">{days[day - 1]}</h2>
       {time > 0 ? (
         <p className="text-base leading-7">
-          Вы работали над задачами в течение{' '}
-          <span className="text-colorRed font-bold">{timeToString}</span>
+          Вы работали над задачами в течение
+          <span className="text-colorRed font-bold"> {timeToString}</span>
         </p>
       ) : (
         <p className="text-base leading-7">Нет данных</p>

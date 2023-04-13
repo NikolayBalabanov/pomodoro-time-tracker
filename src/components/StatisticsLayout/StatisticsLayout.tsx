@@ -18,8 +18,10 @@ export default function StatisticsLayout() {
     statisticsByDay: { breakTimer, pauses, pomodoros, sessionTimer },
     statisticsByWeek,
   } = useAppSelector((state) => state.persistedReducer.statisticsSlice);
+
   const [currentWeek, setCurrentWeek] = useState<number>(0);
   const [currentDay, setCurrentDay] = useState<EWeekDays>(todayWeekDay());
+
   useEffect(() => {
     dispatch(setStatisticsByWeek(currentWeek));
     dispatch(setStatisticsByDay({ week: currentWeek, day: currentDay }));

@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { v1 as uuidv1 } from 'uuid';
 import SelectItem from './SelectItem';
-import Icon, { EIcons } from '../Icon';
+import { ISelectWeekProps } from '../../../types/select';
+import SelectCurrent from './SelectCurrent';
 
 const selectFields = [
   { text: 'Эта неделя', value: 0 },
@@ -9,20 +10,21 @@ const selectFields = [
   { text: '2 недели назад', value: -2 },
 ];
 
-interface ISelectWeekProps {
-  current: number;
-  onChangeWeek: (e: number) => void;
-}
-
 export default function SelectWeek({ current, onChangeWeek }: ISelectWeekProps) {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const fieldsArr = selectFields.filter((el) => el.text !== selectFields[Math.abs(current)].text);
-  const select = useRef<HTMLDivElement>(null);
   const isMounted = useRef(false);
+  const select = useRef<HTMLDivElement>(null);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
   const handleClick = (target: number) => {
     onChangeWeek(target);
     setIsOpen(false);
   };
+
+  const fieldsArr = selectFields.filter((el) => el.text !== selectFields[Math.abs(current)].text);
+  const fieldsNodes = fieldsArr.map((el) => (
+    <SelectItem key={uuidv1()} onChooseWeek={handleClick} value={el.value} text={el.text} />
+  ));
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (select.current && !event.composedPath().includes(select.current) && isMounted.current) {
@@ -35,26 +37,12 @@ export default function SelectWeek({ current, onChangeWeek }: ISelectWeekProps) 
   }, []);
   return (
     <div ref={select} className="relative">
-      <button
-        type="button"
-        className={`${
-          isOpen ? 'border-b border-b-colorGrey' : 'border-b border-transparent'
-        } select-item`}
-        onClick={() => setIsOpen(!isOpen)}
-      >
-        <span>{selectFields[Math.abs(current)].text}</span>
-        <Icon
-          name={EIcons.arrow}
-          styles={`transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
-        />
-      </button>
-      {isOpen && (
-        <ul className="absolute top-full">
-          {fieldsArr.map((el) => (
-            <SelectItem key={uuidv1()} onChooseWeek={handleClick} value={el.value} text={el.text} />
-          ))}
-        </ul>
-      )}
+      <SelectCurrent
+        isOpen={isOpen}
+        onSelect={() => setIsOpen(!isOpen)}
+        text={selectFields[Math.abs(current)].text}
+      />
+      {isOpen && <ul className="absolute top-full">{fieldsNodes}</ul>}
     </div>
   );
 }

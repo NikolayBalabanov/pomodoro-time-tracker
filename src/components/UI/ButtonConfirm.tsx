@@ -1,9 +1,5 @@
 import React from 'react';
-
-interface IButtonConfirmProps {
-  text: string;
-  callback: () => void;
-}
+import { IButtonConfirmProps } from '../../types/buttons';
 
 export default function ButtonConfirm({ text, callback }: IButtonConfirmProps) {
   return (

@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
 import { useSound } from 'use-sound';
-import toggle from '../../assets/sounds/toggle-stage-sound.wav';
-import TimerDisplay from './TimerDisplay';
 import TimerHeader from './TimerHeader';
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { getDisplayedTime } from '../../utils/getDisplayedTime';
-import { reset, setTimer, switchStage } from '../../redux/Slices/timerSlice';
-import { shiftTask } from '../../redux/Slices/tasksSlice';
-import TimerControls from './TimerControls';
 import TimerInitial from './TimerInitial';
+import TimerDisplay from './TimerDisplay';
+import TimerControls from './TimerControls';
 import { EStages } from '../../models/timer';
+import { shiftTask } from '../../redux/Slices/tasksSlice';
+import toggle from '../../assets/sounds/toggle-stage-sound.wav';
+import { getDisplayedTime } from '../../utils/getDisplayedTime';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { reset, setTimer, switchStage } from '../../redux/Slices/timerSlice';
 import {
   incrementBreakTimer,
   incrementPomodoros,

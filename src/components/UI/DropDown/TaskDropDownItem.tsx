@@ -1,12 +1,6 @@
 import React from 'react';
 import Icon, { EIcons } from '../Icon';
-
-export interface ITaskDropDownItemProps {
-  eventHandler: () => void;
-  count: number;
-  iconName: EIcons;
-  text: string;
-}
+import { ITaskDropDownItemProps } from '../../../types/dropDown';
 
 export default function TaskDropDownItem({
   eventHandler,

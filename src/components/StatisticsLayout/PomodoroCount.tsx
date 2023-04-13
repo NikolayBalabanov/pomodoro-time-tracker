@@ -1,11 +1,8 @@
 import React from 'react';
 import Icon, { EIcons } from '../../components/UI/Icon';
+import { IPomodoroCount } from '../../types/statistics';
 
-interface IPomodoroEmpty {
-  pomodoros: number;
-}
-
-export default function PomodoroCount({ pomodoros }: IPomodoroEmpty) {
+export default function PomodoroCount({ pomodoros }: IPomodoroCount) {
   return (
     <div className="bg-colorBg xl:w-auto sm:w-1/2 w-full dark:bg-gray-300">
       {!pomodoros ? (

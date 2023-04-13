@@ -1,11 +1,5 @@
-import React, { ReactNode } from 'react';
-
-interface IStatBoard {
-  title: string;
-  styles: string;
-  content: string;
-  Icon: ReactNode;
-}
+import React from 'react';
+import { IStatBoard } from '../../types/statistics';
 
 export default function StatBoard({ styles, title, Icon, content }: IStatBoard) {
   return (

@@ -1,9 +1,5 @@
 import React from 'react';
-
-interface IButtonUnderscoredProps {
-  text: string;
-  callback: () => void;
-}
+import { IButtonUnderscoredProps } from '../../types/buttons';
 
 export default function ButtonUnderscored({ text, callback }: IButtonUnderscoredProps) {
   return (

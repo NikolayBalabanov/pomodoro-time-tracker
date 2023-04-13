@@ -1,13 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import TaskDropDownList from './TaskDropDownList';
-
-interface ITaskDropDownProps {
-  id: string;
-  count: number;
-  onDelete: () => void;
-  onClose: () => void;
-  toggleEditable: () => void;
-}
+import { ITaskDropDownProps } from '../../../types/dropDown';
 
 export default function TaskDropDown({
   count,
@@ -18,6 +11,7 @@ export default function TaskDropDown({
 }: ITaskDropDownProps) {
   const dropDown = useRef<HTMLUListElement>(null);
   const isMounted = useRef(false);
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (

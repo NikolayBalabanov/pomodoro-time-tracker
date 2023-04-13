@@ -1,10 +1,5 @@
 import React from 'react';
-
-interface ISelectItem {
-  onChooseWeek: (target: number) => void;
-  value: number;
-  text: string;
-}
+import { ISelectItem } from '../../../types/select';
 
 export default function SelectItem({ onChooseWeek, value, text }: ISelectItem) {
   return (
